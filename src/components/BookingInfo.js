@@ -1,11 +1,10 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Text from './Text';
 import theme from '../constants/theme';
 
-const BookingInfo = () => {
-  const safeArea = useSafeAreaInsets();
+const BookingInfo = ({data}) => {
+  const [firstInfo, secondInfo] = data || [];
 
   return (
     <View style={styles.contentContainer}>
@@ -13,11 +12,9 @@ const BookingInfo = () => {
         <View style={styles.dot} />
         <View style={[styles.info, styles.infoBorder]}>
           <Text light size={11} color={theme.color.gray} style={styles.label}>
-            195/3 Dien Bien Phu, Binh Thanh District, HCMC
+            {firstInfo.label}
           </Text>
-          <Text semiBold>
-            Hong Bang University
-          </Text>
+          <Text semiBold>{firstInfo.value}</Text>
         </View>
       </View>
       <View>
@@ -29,10 +26,10 @@ const BookingInfo = () => {
               size={11}
               color={theme.color.gray}
               style={styles.label}>
-              Type of Massage
+              {secondInfo.label}
             </Text>
             <Text semiBold>
-              Thai or Swedish - 60 mins
+              {secondInfo.value}
             </Text>
           </View>
         </View>

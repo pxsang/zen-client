@@ -17,9 +17,9 @@ const usePrevious = value => {
   return ref.current;
 };
 
-const OTP = ({length, autoFocus, onChangeOTP}) => {
+const OTP = ({value, length, autoFocus, onChangeOTP}) => {
   const [activeInput, setActiveInput] = useState(0);
-  const [otpValues, setOTPValues] = useState(Array(length).fill(''));
+  const [otpValues, setOTPValues] = useState((value || '').split(''));
 
   const getRightValue = useCallback(string => {
     let changedValue = string;
@@ -114,7 +114,7 @@ const OTP = ({length, autoFocus, onChangeOTP}) => {
       {Array(length)
         .fill('')
         .map((_, index) => (
-          <View style={{flex: 1, marginHorizontal: 5 }}>
+          <View key={index} style={{flex: 1, marginHorizontal: 5 }}>
             <SingleInput
               key={`SingleInput-${index}`}
               focus={activeInput === index}

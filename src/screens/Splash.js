@@ -1,22 +1,28 @@
-import React, {useRef} from 'react';
+import React, {useRef, useContext} from 'react';
 import {View, Image, ScrollView, StyleSheet, Dimensions} from 'react-native';
 import {useValue, onScrollEvent} from 'react-native-redash/lib/module/v1';
 import Animated, {divide, multiply} from 'react-native-reanimated';
+import {useDispatch} from 'react-redux';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Button from '../components/Button';
 import SwitchLanguage from '../components/SwitchLanguage';
+import Text from '../components/Text';
 import Dot from '../components/Dot';
 import Slide from '../components/Slide';
 import theme from '../constants/theme';
+import {AppContext} from '../providers/AppProvider';
+import {setFirstTime} from '../redux/actions/app';
 
 const {width, height} = Dimensions.get('screen');
 
 const Splash = props => {
+  const dispatch = useDispatch();
   const safeArea = useSafeAreaInsets();
   const scroll = useRef(null);
   const x = useValue(0);
   const onScroll = onScrollEvent({x});
   const {navigation} = props;
+  const {t} = useContext(AppContext);
 
   return (
     <View style={styles.container}>
@@ -26,7 +32,7 @@ const Splash = props => {
         height: 40,
         alignItems: 'flex-end',
         paddingHorizontal: 20,
-        zIndex: 999,
+        zIndex: 10,
       }}>
         <SwitchLanguage />
       </View>
@@ -83,7 +89,7 @@ const Splash = props => {
                   icon="arrow-forward-outline"
                   onPress={async () => {
                     if (last) {
-                      navigation.push('SignIn');
+                      dispatch(setFirstTime(false));
                       return;
                     }
                     if (scroll.current) {
@@ -93,7 +99,7 @@ const Splash = props => {
                       });
                     }
                   }}>
-                  {last ? "Let's get Stated" : 'Next'}
+                  <Text>{t('next')}</Text>
                 </Button>
               </View>
             );
@@ -109,6 +115,7 @@ export default Splash;
 const styles = StyleSheet.create({
   container: {
     height,
+    backgroundColor: 'white',
   },
   pagination: {
     flexDirection: 'row',
@@ -127,18 +134,23 @@ const styles = StyleSheet.create({
 
 const slides = [
   {
-    title: 'Treat yourself.',
-    description: 'Get a premium massage in your home, office, hotel or wherever you are.',
-    image: require('../assets/images/splash-1.png'),
+    title: "It's time to relax",
+    // description: 'Get a premium massage in your home, office, hotel or wherever you are.',
+    image: require('../assets/images/splash-1.jpg'),
   },
   {
-    title: "You're in good hands.",
-    description: 'We have a pool of certified massage therapists.',
-    image: require('../assets/images/splash-2.png'),
+    title: "You're in good hands",
+    // description: 'We have a pool of certified massage therapists.',
+    image: require('../assets/images/splash-2.jpg'),
   },
   {
-    title: "It's time to relax.",
-    description: 'Book your on-demand massage.',
-    image: require('../assets/images/splash-1.png'),
+    title: "Treat yourself",
+    // description: 'Book your on-demand massage.',
+    image: require('../assets/images/splash-3.jpg'),
+  },
+  {
+    title: "Get a  new expereince in health & wellness.",
+    // description: 'Book your on-demand massage.',
+    image: require('../assets/images/splash-4.jpg'),
   },
 ];

@@ -2,14 +2,10 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import SignUpScreen from '../screens/SignUp';
-import WelcomeScreen from '../screens/Welcome';
 import VerifyOTPScreen from '../screens/VerifyOTP';
-import PhoneLoginScreen from '../screens/PhoneLogin';
-import PersonalScreen from '../screens/Personal';
-import RegisteredScreen from '../screens/Registered';
+import SignInScreen from '../screens/SignIn';
+import TermOfUseScreen from '../screens/TermOfUse';
 import ForgotPasswordScreen from '../screens/ForgotPassword';
-import NewPasswordScreen from '../screens/NewPassword';
-import TermsScreen from '../screens/Terms';
 
 const {Navigator, Screen} = createStackNavigator();
 
@@ -19,11 +15,10 @@ export default () => (
     screenOptions={{
       headerShown: false,
     }}>
-    <Screen name="Welcome" component={WelcomeScreen} />
-    <Screen name="PhoneLogin" component={PhoneLoginScreen} />
-    <Screen name="VerifyOTP" component={VerifyOTPScreen} />
+    <Screen name="SignIn" component={SignInScreen} />
     <Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+    <Screen name="TermOfUse" component={TermOfUseScreen} />
     <Screen name="SignUp" component={SignUpScreen} />
-    <Screen name="Terms" component={TermsScreen} />
+    <Screen name="VerifyOTP" component={VerifyOTPScreen} />
   </Navigator>
 );

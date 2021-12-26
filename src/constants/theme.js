@@ -8,6 +8,8 @@ const theme = {
     text: '#505050',
     gray: '#BDBDBD',
     border: '#E3E9F2',
+    link: '#439FEF',
+    error: '#DF2F45',
   },
   spacing: {
     s: 10,
@@ -24,9 +26,19 @@ const theme = {
     height: 200,
   },
   block: {
+    row: {
+      flexDirection: 'row',
+    },
+    center: {
+      alignItems: 'center',
+    },
     rowMiddle: {
       flexDirection: 'row',
       alignItems: 'center',
+    },
+    rowCenter: {
+      flexDirection: 'row',
+      justifyContent: 'center',
     },
     rowMiddleCenter: {
       flexDirection: 'row',
@@ -51,6 +63,12 @@ const theme = {
     }),
     paddingVertical: num => ({
       paddingVertical: num,
+    }),
+    paddingBottom: num => ({
+      paddingBottom: num,
+    }),
+    paddingTop: num => ({
+      paddingTop: num,
     }),
     marginBottom: num => ({
       marginBottom: num,

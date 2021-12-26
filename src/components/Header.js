@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Image, Dimensions} from 'react-native';
+import {View, Image, Dimensions, TouchableWithoutFeedback} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Icon} from '@ui-kitten/components';
 import Text from '../components/Text';
 import SwitchLanguage from '../components/SwitchLanguage';
 
 const {width, height} = Dimensions.get('screen');
 
-const Header = ({title}) => {
+const Header = ({title, navigation, hiddenBack}) => {
   const safeArea = useSafeAreaInsets();
 
   return (
@@ -36,6 +37,44 @@ const Header = ({title}) => {
       </View>
       <View style={{
         position: 'absolute',
+        left: 0,
+        right: 0,
+        top: safeArea.top,
+        zIndex: 99,
+      }}>
+        <View style={{
+          paddingHorizontal: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between'
+        }}>
+          {!hiddenBack ? (
+            <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+              <View style={{
+                width: 44,
+                height: 44,
+                borderRadius: 11,
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                <Icon
+                  name="arrow-back-outline"
+                  fill="white"
+                  style={{
+                    width: 24,
+                    height: 24,
+                  }}
+                />
+              </View>
+            </TouchableWithoutFeedback>
+          ) : (
+            <View />
+          )}
+          <SwitchLanguage />
+        </View>
+      </View>
+      <View style={{
+        position: 'absolute',
         right: -20,
         top: 60,
       }}>
@@ -47,16 +86,6 @@ const Header = ({title}) => {
             resizeMode: 'contain',
           }}
         />
-      </View>
-      <View style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: safeArea.top,
-        alignItems: 'flex-end',
-        paddingHorizontal: 20,
-      }}>
-        <SwitchLanguage />
       </View>
       <View style={{
         position: 'absolute',

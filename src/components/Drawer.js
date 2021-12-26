@@ -1,12 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Image, TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import {Drawer as UIDrawer, DrawerItem, IndexPath} from '@ui-kitten/components';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSelector} from 'react-redux';
+import UserAvatar from './UserAvatar';
 import Text from './Text';
 import theme from '../constants/theme';
+import {AppContext} from '../providers/AppProvider';
 
 const Drawer = ({navigation, state}) => {
+  const {t} = useContext(AppContext);
   const safeArea = useSafeAreaInsets();
+  const UserState = useSelector(_ => _.User);
+  const {userInfo} = UserState;
+
+  const getGreeting = () => {
+    const hours = new Date().getHours();
+
+    if (hours < 12) {
+      return 'Good morning,';
+    }
+
+    return 'Good afternoon,';
+  };
 
   return (
     <UIDrawer
@@ -15,16 +31,16 @@ const Drawer = ({navigation, state}) => {
       appearance="noDivider"
       header={() => (
         <TouchableWithoutFeedback
-          onPress={() => navigation.navigate('Profile')}>
+          onPress={() => {
+            navigation.closeDrawer();
+            navigation.navigate('Profile');
+          }}>
           <View style={styles.headerContainer(safeArea)}>
-            <Image
-              style={styles.avatar}
-              source={require('../assets/icons/user-avatar.png')}
-            />
+            <UserAvatar style={styles.avatar} />
             <View>
-              <Text size={12}>Good morning,</Text>
+              <Text size={12}>{getGreeting()}</Text>
               <Text bold size={24}>
-                Poppet Celdran
+                {userInfo?.name}
               </Text>
             </View>
           </View>
@@ -52,10 +68,13 @@ const Drawer = ({navigation, state}) => {
       <DrawerItem
         title={
           <Text bold size={24}>
-            History
+            {t('history')}
           </Text>
         }
-        onPress={() => navigation.navigate('History')}
+        onPress={() => {
+          navigation.closeDrawer();
+          navigation.navigate('History');
+        }}
       />
       {/* <DrawerItem
         title={
@@ -68,26 +87,35 @@ const Drawer = ({navigation, state}) => {
       <DrawerItem
         title={
           <Text bold size={24}>
-            Rewards
+            {t('rewards')}
           </Text>
         }
-        onPress={() => navigation.navigate('Rewards')}
+        onPress={() => {
+          navigation.closeDrawer();
+          navigation.navigate('Rewards');
+        }}
       />
       <DrawerItem
         title={
           <Text bold size={24}>
-            Settings
+            {t('settings')}
           </Text>
         }
-        onPress={() => navigation.navigate('Settings')}
+        onPress={() => {
+          navigation.closeDrawer();
+          navigation.navigate('Settings');
+        }}
       />
       <DrawerItem
         title={
           <Text bold size={24}>
-            Support
+            {t('support')}
           </Text>
         }
-        onPress={() => navigation.navigate('Support')}
+        onPress={() => {
+          navigation.closeDrawer();
+          navigation.navigate('Support');
+        }}
       />
     </UIDrawer>
   );

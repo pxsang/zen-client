@@ -6,7 +6,7 @@ import Text from '../components/Text';
 
 const {width, height} = Dimensions.get('screen');
 
-const Header = ({title, small, navigation, hideRightMenu}) => {
+const Header = ({title, i18nKey, small, navigation, hideRightMenu}) => {
   const safeArea = useSafeAreaInsets();
 
   return (
@@ -36,7 +36,7 @@ const Header = ({title, small, navigation, hideRightMenu}) => {
         position: 'absolute',
         left: 0,
         right: 0,
-        top: safeArea.top,
+        top: safeArea.top + 20,
       }}>
         <View style={{
           paddingHorizontal: 20,
@@ -62,7 +62,7 @@ const Header = ({title, small, navigation, hideRightMenu}) => {
               />
             </View>
           </TouchableWithoutFeedback>
-          {!hideRightMenu &&
+          {/* {!hideRightMenu &&
             <TouchableWithoutFeedback onPress={() => navigation.openDrawer()}>
               <View style={{
                 width: 44,
@@ -82,20 +82,20 @@ const Header = ({title, small, navigation, hideRightMenu}) => {
                 />
               </View>
             </TouchableWithoutFeedback>
-          }
+          } */}
         </View>
       </View>
       <View style={{
         position: 'absolute',
         left: 0,
-        top: small ? safeArea.top + 60 : 'auto',
+        top: small ? safeArea.top + 80 : 'auto',
         bottom: !small ? '50%' : 'auto',
       }}>
         <View style={{
           paddingHorizontal: 20,
           paddingRight: 80,
         }}>
-          <Text size={small ? 14 : 24} bold color="white">{title}</Text>
+          <Text size={small ? 14 : 24} bold color="white" i18nKey={i18nKey}>{title}</Text>
         </View>
       </View>
     </View>

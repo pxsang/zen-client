@@ -8,30 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* ZenClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ZenClientTests.m */; };
-		0A871098B58A4C6D82D218EB /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DB9925883A4C09B5FAFA7E /* Poppins-ThinItalic.ttf */; };
-		0C4ED1F144074EC28A6238E1 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6EE7E7302814016883847E8 /* Poppins-Thin.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		14066B77C4834FB0AF54796A /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5183EF1B747D46D9B9CC11C0 /* Poppins-Medium.ttf */; };
-		1BAF686640B040F297AAEB60 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C328720169841D88335B75A /* Poppins-BoldItalic.ttf */; };
+		164349033E3346EF8C0550CA /* Baloo2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3271552D4284E1FAAC84C6A /* Baloo2-ExtraBold.ttf */; };
 		20BA3F3FCE000AE53693F3C6 /* libPods-ZenClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBA3F836E6C8D63500337F3 /* libPods-ZenClient.a */; };
-		249FEECA9C6C49A082DD1937 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEAF1B7D2AB24510BBB24D9F /* Poppins-MediumItalic.ttf */; };
-		42FFC333DCDA4E5B9F25BB45 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1FC57CBAB764654B6A3FCCE /* Poppins-ExtraBoldItalic.ttf */; };
-		47D06541EB0B4E1E83A35394 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD12C1E4740C4D639FEDA66E /* Poppins-Black.ttf */; };
-		4AFFB40E10A048A49C52AC9F /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41C6BD9D3DDC4478B401A66F /* Poppins-LightItalic.ttf */; };
-		5012FB67426C4B34AB95088B /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FCBE587F4594E9EA3A6BA9E /* Poppins-BlackItalic.ttf */; };
-		5EC8A86770B44014A4BFF4CF /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A59E0AEBFAC6476AAFF5F81A /* Poppins-SemiBold.ttf */; };
+		5B75B1CF26BE3C3100847232 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B75B1CE26BE3C3100847232 /* GoogleService-Info.plist */; };
+		60E2FE2827B94CCBB3A608AB /* Baloo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E2D4C41B6F947A686C22ECF /* Baloo2-Bold.ttf */; };
+		715F401522CF44ECAFE288C4 /* Baloo2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4B249A95BD4147EABBF54B3E /* Baloo2-Regular.ttf */; };
+		763405923F4E48B6A1FB1312 /* Baloo2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66771627355B46F090593E1F /* Baloo2-Medium.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		928ACE58A9BF4A2CB11CBD13 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72DC2BA86A4742C8BFD589B4 /* Poppins-ExtraLight.ttf */; };
-		990DDD674E7741E8BD13D6B5 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F912B6E84CA41319204ED7D /* Poppins-ExtraBold.ttf */; };
-		A300BFBEEE9944C4861E6AE2 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 815CCA0EDD994580B011F193 /* Poppins-Regular.ttf */; };
-		AEA0C8DAC7DD40068FF00730 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCE8F6C779FF46819D5768D3 /* Poppins-ExtraLightItalic.ttf */; };
-		AF849ADEF2F242C687D3D770 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D2CC0F2D54D8F81341699 /* Poppins-Italic.ttf */; };
-		B0325AF63E8A4741B8CA98F0 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6368119455184DDD81D25EFF /* Poppins-Light.ttf */; };
+		9277516B3E2A4D64927579DD /* Baloo2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0E6466E18F48B8B0D4E45E /* Baloo2-SemiBold.ttf */; };
 		C718DD1FDDB012F2E27C43EC /* libPods-ZenClient-ZenClientTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7758CDD73A9C0335226D517C /* libPods-ZenClient-ZenClientTests.a */; };
-		E94ECAA6851742648F5DA79D /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3968472562B45FCAA8097E4 /* Poppins-SemiBoldItalic.ttf */; };
-		F6EC7E7D190B481C97F81A39 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5ACD18D13F89489C89B67CE5 /* Poppins-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,31 +42,19 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ZenClient/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ZenClient/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ZenClient/main.m; sourceTree = "<group>"; };
-		41C6BD9D3DDC4478B401A66F /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-LightItalic.ttf"; path = "../src/assets/fonts/Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
-		5183EF1B747D46D9B9CC11C0 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../src/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
-		5ACD18D13F89489C89B67CE5 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../src/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		5FCBE587F4594E9EA3A6BA9E /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BlackItalic.ttf"; path = "../src/assets/fonts/Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
-		6368119455184DDD81D25EFF /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../src/assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
-		6C328720169841D88335B75A /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-BoldItalic.ttf"; path = "../src/assets/fonts/Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
-		72DC2BA86A4742C8BFD589B4 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLight.ttf"; path = "../src/assets/fonts/Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		4B249A95BD4147EABBF54B3E /* Baloo2-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo2-Regular.ttf"; path = "../src/assets/fonts/Baloo2-Regular.ttf"; sourceTree = "<group>"; };
+		4E2D4C41B6F947A686C22ECF /* Baloo2-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo2-Bold.ttf"; path = "../src/assets/fonts/Baloo2-Bold.ttf"; sourceTree = "<group>"; };
+		5B75B1CE26BE3C3100847232 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66771627355B46F090593E1F /* Baloo2-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo2-Medium.ttf"; path = "../src/assets/fonts/Baloo2-Medium.ttf"; sourceTree = "<group>"; };
 		7758CDD73A9C0335226D517C /* libPods-ZenClient-ZenClientTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZenClient-ZenClientTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D8C998AFBF593D583145E67 /* Pods-ZenClient-ZenClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenClient-ZenClientTests.release.xcconfig"; path = "Target Support Files/Pods-ZenClient-ZenClientTests/Pods-ZenClient-ZenClientTests.release.xcconfig"; sourceTree = "<group>"; };
-		815CCA0EDD994580B011F193 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../src/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ZenClient/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8A3D2CC0F2D54D8F81341699 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Italic.ttf"; path = "../src/assets/fonts/Poppins-Italic.ttf"; sourceTree = "<group>"; };
-		8F912B6E84CA41319204ED7D /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBold.ttf"; path = "../src/assets/fonts/Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
-		A59E0AEBFAC6476AAFF5F81A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../src/assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		AD12C1E4740C4D639FEDA66E /* Poppins-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Black.ttf"; path = "../src/assets/fonts/Poppins-Black.ttf"; sourceTree = "<group>"; };
-		AEAF1B7D2AB24510BBB24D9F /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-MediumItalic.ttf"; path = "../src/assets/fonts/Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		BC0E6466E18F48B8B0D4E45E /* Baloo2-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo2-SemiBold.ttf"; path = "../src/assets/fonts/Baloo2-SemiBold.ttf"; sourceTree = "<group>"; };
 		BCBA3F836E6C8D63500337F3 /* libPods-ZenClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZenClient.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3968472562B45FCAA8097E4 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBoldItalic.ttf"; path = "../src/assets/fonts/Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		C3DB9925883A4C09B5FAFA7E /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ThinItalic.ttf"; path = "../src/assets/fonts/Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
-		C6EE7E7302814016883847E8 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Thin.ttf"; path = "../src/assets/fonts/Poppins-Thin.ttf"; sourceTree = "<group>"; };
 		CBE44AF5FB5DF70B9F1CD47B /* Pods-ZenClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenClient.release.xcconfig"; path = "Target Support Files/Pods-ZenClient/Pods-ZenClient.release.xcconfig"; sourceTree = "<group>"; };
-		CCE8F6C779FF46819D5768D3 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraLightItalic.ttf"; path = "../src/assets/fonts/Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		E3271552D4284E1FAAC84C6A /* Baloo2-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Baloo2-ExtraBold.ttf"; path = "../src/assets/fonts/Baloo2-ExtraBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED9324CDB66C63910E045DBC /* Pods-ZenClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenClient.debug.xcconfig"; path = "Target Support Files/Pods-ZenClient/Pods-ZenClient.debug.xcconfig"; sourceTree = "<group>"; };
-		F1FC57CBAB764654B6A3FCCE /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-ExtraBoldItalic.ttf"; path = "../src/assets/fonts/Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		FFAACBCD24600CE17F29D7FA /* Pods-ZenClient-ZenClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZenClient-ZenClientTests.debug.xcconfig"; path = "Target Support Files/Pods-ZenClient-ZenClientTests/Pods-ZenClient-ZenClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,7 +116,6 @@
 				FFAACBCD24600CE17F29D7FA /* Pods-ZenClient-ZenClientTests.debug.xcconfig */,
 				7D8C998AFBF593D583145E67 /* Pods-ZenClient-ZenClientTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -164,6 +139,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5B75B1CE26BE3C3100847232 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* ZenClient */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ZenClientTests */,
@@ -189,27 +165,13 @@
 		8CE956DF0047410682C9B2BC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AD12C1E4740C4D639FEDA66E /* Poppins-Black.ttf */,
-				5FCBE587F4594E9EA3A6BA9E /* Poppins-BlackItalic.ttf */,
-				5ACD18D13F89489C89B67CE5 /* Poppins-Bold.ttf */,
-				6C328720169841D88335B75A /* Poppins-BoldItalic.ttf */,
-				8F912B6E84CA41319204ED7D /* Poppins-ExtraBold.ttf */,
-				F1FC57CBAB764654B6A3FCCE /* Poppins-ExtraBoldItalic.ttf */,
-				72DC2BA86A4742C8BFD589B4 /* Poppins-ExtraLight.ttf */,
-				CCE8F6C779FF46819D5768D3 /* Poppins-ExtraLightItalic.ttf */,
-				8A3D2CC0F2D54D8F81341699 /* Poppins-Italic.ttf */,
-				6368119455184DDD81D25EFF /* Poppins-Light.ttf */,
-				41C6BD9D3DDC4478B401A66F /* Poppins-LightItalic.ttf */,
-				5183EF1B747D46D9B9CC11C0 /* Poppins-Medium.ttf */,
-				AEAF1B7D2AB24510BBB24D9F /* Poppins-MediumItalic.ttf */,
-				815CCA0EDD994580B011F193 /* Poppins-Regular.ttf */,
-				A59E0AEBFAC6476AAFF5F81A /* Poppins-SemiBold.ttf */,
-				C3968472562B45FCAA8097E4 /* Poppins-SemiBoldItalic.ttf */,
-				C6EE7E7302814016883847E8 /* Poppins-Thin.ttf */,
-				C3DB9925883A4C09B5FAFA7E /* Poppins-ThinItalic.ttf */,
+				4E2D4C41B6F947A686C22ECF /* Baloo2-Bold.ttf */,
+				E3271552D4284E1FAAC84C6A /* Baloo2-ExtraBold.ttf */,
+				66771627355B46F090593E1F /* Baloo2-Medium.ttf */,
+				4B249A95BD4147EABBF54B3E /* Baloo2-Regular.ttf */,
+				BC0E6466E18F48B8B0D4E45E /* Baloo2-SemiBold.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +210,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				84BC769E609D4FF1FBF3774A /* [CP] Embed Pods Frameworks */,
 				515A91F6FC9F57990F841789 /* [CP] Copy Pods Resources */,
+				A7958F347575FF2D6391F2C6 /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -307,25 +270,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				5B75B1CF26BE3C3100847232 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				47D06541EB0B4E1E83A35394 /* Poppins-Black.ttf in Resources */,
-				5012FB67426C4B34AB95088B /* Poppins-BlackItalic.ttf in Resources */,
-				F6EC7E7D190B481C97F81A39 /* Poppins-Bold.ttf in Resources */,
-				1BAF686640B040F297AAEB60 /* Poppins-BoldItalic.ttf in Resources */,
-				990DDD674E7741E8BD13D6B5 /* Poppins-ExtraBold.ttf in Resources */,
-				42FFC333DCDA4E5B9F25BB45 /* Poppins-ExtraBoldItalic.ttf in Resources */,
-				928ACE58A9BF4A2CB11CBD13 /* Poppins-ExtraLight.ttf in Resources */,
-				AEA0C8DAC7DD40068FF00730 /* Poppins-ExtraLightItalic.ttf in Resources */,
-				AF849ADEF2F242C687D3D770 /* Poppins-Italic.ttf in Resources */,
-				B0325AF63E8A4741B8CA98F0 /* Poppins-Light.ttf in Resources */,
-				4AFFB40E10A048A49C52AC9F /* Poppins-LightItalic.ttf in Resources */,
-				14066B77C4834FB0AF54796A /* Poppins-Medium.ttf in Resources */,
-				249FEECA9C6C49A082DD1937 /* Poppins-MediumItalic.ttf in Resources */,
-				A300BFBEEE9944C4861E6AE2 /* Poppins-Regular.ttf in Resources */,
-				5EC8A86770B44014A4BFF4CF /* Poppins-SemiBold.ttf in Resources */,
-				E94ECAA6851742648F5DA79D /* Poppins-SemiBoldItalic.ttf in Resources */,
-				0C4ED1F144074EC28A6238E1 /* Poppins-Thin.ttf in Resources */,
-				0A871098B58A4C6D82D218EB /* Poppins-ThinItalic.ttf in Resources */,
+				60E2FE2827B94CCBB3A608AB /* Baloo2-Bold.ttf in Resources */,
+				164349033E3346EF8C0550CA /* Baloo2-ExtraBold.ttf in Resources */,
+				763405923F4E48B6A1FB1312 /* Baloo2-Medium.ttf in Resources */,
+				715F401522CF44ECAFE288C4 /* Baloo2-Regular.ttf in Resources */,
+				9277516B3E2A4D64927579DD /* Baloo2-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +386,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A7958F347575FF2D6391F2C6 /* [CP-User] [RNFB] Core Configuration */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "[CP-User] [RNFB] Core Configuration";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/usr/bin/env bash\n#\n# Copyright (c) 2016-present Invertase Limited & Contributors\n#\n# Licensed under the Apache License, Version 2.0 (the \"License\");\n# you may not use this library except in compliance with the License.\n# You may obtain a copy of the License at\n#\n#   http://www.apache.org/licenses/LICENSE-2.0\n#\n# Unless required by applicable law or agreed to in writing, software\n# distributed under the License is distributed on an \"AS IS\" BASIS,\n# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n# See the License for the specific language governing permissions and\n# limitations under the License.\n#\nset -e\n\n_MAX_LOOKUPS=2;\n_SEARCH_RESULT=''\n_RN_ROOT_EXISTS=''\n_CURRENT_LOOKUPS=1\n_JSON_ROOT=\"'react-native'\"\n_JSON_FILE_NAME='firebase.json'\n_JSON_OUTPUT_BASE64='e30=' # { }\n_CURRENT_SEARCH_DIR=${PROJECT_DIR}\n_PLIST_BUDDY=/usr/libexec/PlistBuddy\n_TARGET_PLIST=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\n_DSYM_PLIST=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist\"\n\n# plist arrays\n_PLIST_ENTRY_KEYS=()\n_PLIST_ENTRY_TYPES=()\n_PLIST_ENTRY_VALUES=()\n\nfunction setPlistValue {\n  echo \"info:      setting plist entry '$1' of type '$2' in file '$4'\"\n  ${_PLIST_BUDDY} -c \"Add :$1 $2 '$3'\" $4 || echo \"info:      '$1' already exists\"\n}\n\nfunction getFirebaseJsonKeyValue () {\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$1'); puts output[$_JSON_ROOT]['$2']\"\n  else\n    echo \"\"\n  fi;\n}\n\nfunction jsonBoolToYesNo () {\n  if [[ $1 == \"false\" ]]; then\n    echo \"NO\"\n  elif [[ $1 == \"true\" ]]; then\n    echo \"YES\"\n  else echo \"NO\"\n  fi\n}\n\necho \"info: -> RNFB build script started\"\necho \"info: 1) Locating ${_JSON_FILE_NAME} file:\"\n\nif [[ -z ${_CURRENT_SEARCH_DIR} ]]; then\n  _CURRENT_SEARCH_DIR=$(pwd)\nfi;\n\nwhile true; do\n  _CURRENT_SEARCH_DIR=$(dirname \"$_CURRENT_SEARCH_DIR\")\n  if [[ \"$_CURRENT_SEARCH_DIR\" == \"/\" ]] || [[ ${_CURRENT_LOOKUPS} -gt ${_MAX_LOOKUPS} ]]; then break; fi;\n  echo \"info:      ($_CURRENT_LOOKUPS of $_MAX_LOOKUPS) Searching in '$_CURRENT_SEARCH_DIR' for a ${_JSON_FILE_NAME} file.\"\n  _SEARCH_RESULT=$(find \"$_CURRENT_SEARCH_DIR\" -maxdepth 2 -name ${_JSON_FILE_NAME} -print | head -n 1)\n  if [[ ${_SEARCH_RESULT} ]]; then\n    echo \"info:      ${_JSON_FILE_NAME} found at $_SEARCH_RESULT\"\n    break;\n  fi;\n  _CURRENT_LOOKUPS=$((_CURRENT_LOOKUPS+1))\ndone\n\nif [[ ${_SEARCH_RESULT} ]]; then\n  _JSON_OUTPUT_RAW=$(cat \"${_SEARCH_RESULT}\")\n  _RN_ROOT_EXISTS=$(ruby -e \"require 'rubygems';require 'json'; output=JSON.parse('$_JSON_OUTPUT_RAW'); puts output[$_JSON_ROOT]\" || echo '')\n\n  if [[ ${_RN_ROOT_EXISTS} ]]; then\n    _JSON_OUTPUT_BASE64=$(python -c 'import json,sys,base64;print(base64.b64encode(json.dumps(json.loads(open('\"'${_SEARCH_RESULT}'\"').read())['${_JSON_ROOT}'])))' || echo \"e30=\")\n  fi\n\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n\n  # config.analytics_auto_collection_enabled\n  _ANALYTICS_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"analytics_auto_collection_enabled\")\n  if [[ $_ANALYTICS_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FIREBASE_ANALYTICS_COLLECTION_ENABLED\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_ANALYTICS_AUTO_COLLECTION\")\")\n  fi\n\n  # config.perf_auto_collection_enabled\n  _PERF_AUTO_COLLECTION=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"perf_auto_collection_enabled\")\n  if [[ $_PERF_AUTO_COLLECTION ]]; then\n    _PLIST_ENTRY_KEYS+=(\"firebase_performance_collection_enabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_PERF_AUTO_COLLECTION\")\")\n  fi\n\n  # config.messaging_auto_init_enabled\n  _MESSAGING_AUTO_INIT=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"messaging_auto_init_enabled\")\n  if [[ $_MESSAGING_AUTO_INIT ]]; then\n    _PLIST_ENTRY_KEYS+=(\"FirebaseMessagingAutoInitEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"$(jsonBoolToYesNo \"$_MESSAGING_AUTO_INIT\")\")\n  fi\n\n  # config.crashlytics_disable_auto_disabler - undocumented for now - mainly for debugging, document if becomes useful\n  _CRASHLYTICS_AUTO_DISABLE_ENABLED=$(getFirebaseJsonKeyValue \"$_JSON_OUTPUT_RAW\" \"crashlytics_disable_auto_disabler\")\n  if [[ $_CRASHLYTICS_AUTO_DISABLE_ENABLED == \"true\" ]]; then\n    echo \"Disabled Crashlytics auto disabler.\" # do nothing\n  else\n    _PLIST_ENTRY_KEYS+=(\"FirebaseCrashlyticsCollectionEnabled\")\n    _PLIST_ENTRY_TYPES+=(\"bool\")\n    _PLIST_ENTRY_VALUES+=(\"NO\")\n  fi\nelse\n  _PLIST_ENTRY_KEYS+=(\"firebase_json_raw\")\n  _PLIST_ENTRY_TYPES+=(\"string\")\n  _PLIST_ENTRY_VALUES+=(\"$_JSON_OUTPUT_BASE64\")\n  echo \"warning:   A firebase.json file was not found, whilst this file is optional it is recommended to include it to configure firebase services in React Native Firebase.\"\nfi;\n\necho \"info: 2) Injecting Info.plist entries: \"\n\n# Log out the keys we're adding\nfor i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n  echo \"    ->  $i) ${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\"\ndone\n\nfor plist in \"${_TARGET_PLIST}\" \"${_DSYM_PLIST}\" ; do\n  if [[ -f \"${plist}\" ]]; then\n\n    # paths with spaces break the call to setPlistValue. temporarily modify\n    # the shell internal field separator variable (IFS), which normally\n    # includes spaces, to consist only of line breaks\n    oldifs=$IFS\n    IFS=\"\n\"\n\n    for i in \"${!_PLIST_ENTRY_KEYS[@]}\"; do\n      setPlistValue \"${_PLIST_ENTRY_KEYS[$i]}\" \"${_PLIST_ENTRY_TYPES[$i]}\" \"${_PLIST_ENTRY_VALUES[$i]}\" \"${plist}\"\n    done\n\n    # restore the original internal field separator value\n    IFS=$oldifs\n  else\n    echo \"warning:   A Info.plist build output file was not found (${plist})\"\n  fi\ndone\n\necho \"info: <- RNFB build script finished\"\n";
 		};
 		C68D825A3430780A7650B142 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -565,20 +529,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z6MBJL42KR;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ZenClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zenapppro.client.staging;
 				PRODUCT_NAME = ZenClient;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -591,19 +561,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z6MBJL42KR;
 				INFOPLIST_FILE = ZenClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zenapppro.client.staging;
 				PRODUCT_NAME = ZenClient;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

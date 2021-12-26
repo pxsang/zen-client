@@ -5,29 +5,44 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Host} from 'react-native-portalize';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import Geocoder from 'react-native-geocoding';
+
 import {myTheme} from './custom-theme';
-
+import AppProvider from './src/providers/AppProvider';
 import Navigation from './src/navigation';
+import getStore from './src/redux';
 
-const strictTheme = {['text-font-family']: 'Poppins'};
+const strictTheme = {['text-font-family']: 'Baloo2-Regular'};
 const customMapping = {strict: strictTheme};
+
+const {store, persistor} = getStore();
+
+Geocoder.init('AIzaSyD7Jj_OhSYIWgrBLNDS0ILeaI-sWnGid_Q');
 
 const App = () => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={{...eva.light, ...myTheme}} customMapping={customMapping}>
-        <Host>
-          <SafeAreaProvider>
-            <StatusBar
-              translucent
-              backgroundColor="transparent"
-              barStyle="dark-content"
-            />
-            <Navigation />
-          </SafeAreaProvider>
-        </Host>
-      </ApplicationProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <ApplicationProvider {...eva} theme={{...eva.light, ...myTheme}} customMapping={customMapping}>
+            <SafeAreaProvider>
+              <StatusBar
+                translucent
+                backgroundColor="transparent"
+                barStyle="dark-content"
+              />
+              <AppProvider>
+                <Host>
+                  <Navigation />
+                </Host>
+              </AppProvider>
+            </SafeAreaProvider>
+          </ApplicationProvider>
+        </PersistGate>
+      </Provider>
     </>
   );
 };

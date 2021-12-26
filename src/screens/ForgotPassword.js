@@ -1,61 +1,107 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions, Image} from 'react-native';
+import React, {useState, useContext} from 'react';
+import {View, StyleSheet, Dimensions} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import Button from '../components/Button';
 import GhostButton from '../components/GhostButton';
-import { Input, Tab, TabView, Select, SelectItem, Datepicker, Icon } from '@ui-kitten/components';
-
+import {Input, Icon} from '@ui-kitten/components';
+import {forgotPassword} from '../redux/actions/user';
+import {phoneValidator, convertTo0PhoneNumber} from '../helpers/display';
+import {AppContext} from '../providers/AppProvider';
 import theme from '../constants/theme';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
-const ForgotPassword = () => {
-  const renderCountryCode = () => (
-    <View style={styles.countryCodeContainer}>
-      <Image source={require('../assets/icons/azerbaijan.png')} style={{ width: 24, height: 16, resizeMode: 'contain', marginHorizontal: 5 }} />
-      <Text style={styles.countryCode}>+84</Text>
-    </View>
-  );
+const ForgotPassword = props => {
+  const dispatch = useDispatch();
+  const {t} = useContext(AppContext);
+  const {navigation} = props;
+  // const UserState = useSelector(state => state.User);
+  // const {isLoading, isFailed, errorMessage} = UserState.forgotPassword;
+  let [isLoading, setLoading] = useState(false);
+  let [isFailed, setFailed] = useState(false);
+  let [errorMessage, setErrorMessage] = useState('');
+  let [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleForgotPassword = async () => {
+    try {
+      setLoading(true);
+      setFailed(false);
+      setErrorMessage('');
+
+      const action = forgotPassword(convertTo0PhoneNumber(`+84${phoneNumber}`));
+      const result = await dispatch(action);
+
+      if (result) {
+        navigation.navigate('VerifyOTP', {
+          type: 'forgot_password',
+          phoneNumber: convertTo0PhoneNumber(`+84${phoneNumber}`),
+        });
+      }
+    } catch (error) {
+      console.log('error', error);
+      setFailed(true);
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const renderError = () => {
+    if (!isFailed) {
+      return null;
+    }
+
+    return (
+      <View>
+        <View height={10} />
+        <View style={[theme.block.rowMiddle]}>
+          <Icon
+            style={styles.errorIcon}
+            fill={theme.color.error}
+            name="alert-triangle-outline"
+          />
+          <View width={10} />
+          <Text color={theme.color.error}>{errorMessage}</Text>
+        </View>
+      </View>
+    );
+  };
 
   return (
     <>
-      <Header title="Forgot Password" />
-      <View style={{
-        ...StyleSheet.absoluteFillObject,
-        top: height / 4,
-        padding: 20,
-        flex: 1,
-      }}>
-        <View style={{
-          backgroundColor: '#FEF3F3',
-          borderRadius: 30,
-          flex: 1,
-          padding: 20,
-        }}>
-          <Text size={12} color="#2E384D">Forgot Password?!</Text>
-          <Text bold size={24} color="#2E384D">Don’t worry!</Text>
-          <View style={{ paddingVertical: 20 }}>
+      <Header {...props} title={t('forgot_password')} />
+      <View style={styles.container}>
+        <View style={styles.contentContainer}>
+          {/* <Text size={12} color="#2E384D">Forgot Password?!</Text> */}
+          <Text bold size={24} color="#2E384D">
+            {t('dont_worry')}
+          </Text>
+          <View style={theme.block.paddingVertical(20)}>
             <View style={styles.formContainer}>
               <Input
                 keyboardType="phone-pad"
-                placeholder="Enter your phone number"
-                accessoryLeft={renderCountryCode}
+                placeholder={t('enter_your_phone_number')}
+                // accessoryLeft={renderCountryCode}
                 size="large"
-                textStyle={{
-                  paddingVertical: 3,
-                }}
-                style={{
-                  borderRadius: 12,
-                }}
+                value={phoneNumber}
+                status={isFailed ? 'danger' : 'basic'}
+                caption={renderError()}
+                onChangeText={nextValue => setPhoneNumber(nextValue)}
+                textStyle={styles.inputText}
+                style={styles.input}
               />
-              <View style={{ marginTop: 20 }}>
-                <GhostButton>
+
+              <View height={20} />
+
+              <View>
+                <GhostButton onPress={() => navigation.navigate('SignIn')}>
                   <View>
                     <View style={styles.resendContainer}>
                       <Text>
-                        <Text>No problem? </Text>
-                        <Text bold>Sign In</Text>
+                        <Text>{t('no_problem')} </Text>
+                        <Text bold>{t('sign_in')}</Text>
                       </Text>
                     </View>
                   </View>
@@ -64,13 +110,15 @@ const ForgotPassword = () => {
             </View>
             <View>
               <Button
+                isLoading={isLoading}
+                disabled={!phoneValidator(phoneNumber)}
                 icon="arrow-forward-outline"
-              >
-                Continue
+                onPress={handleForgotPassword}>
+                {t('continue')}
               </Button>
-              <View style={{ alignItems: 'center' }}>
-                <GhostButton>
-                  Terms & Conditions
+              <View style={theme.block.rowCenter}>
+                <GhostButton onPress={() => navigation.navigate('TermOfUse')}>
+                  {t('terms_and_conditions')}
                 </GhostButton>
               </View>
             </View>
@@ -84,6 +132,18 @@ const ForgotPassword = () => {
 export default ForgotPassword;
 
 const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    top: height / 4,
+    padding: 20,
+    flex: 1,
+  },
+  contentContainer: {
+    backgroundColor: '#FEF3F3',
+    borderRadius: 30,
+    flex: 1,
+    padding: 20,
+  },
   countryCodeContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -101,5 +161,15 @@ const styles = StyleSheet.create({
   countryCode: {
     marginLeft: 5,
     fontSize: 18,
+  },
+  inputText: {
+    paddingVertical: 3,
+  },
+  input: {
+    borderRadius: 12,
+  },
+  errorIcon: {
+    width: 24,
+    height: 24,
   },
 });

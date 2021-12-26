@@ -8,10 +8,10 @@ import { Input, Tab, TabView, Select, SelectItem, Datepicker, Icon } from '@ui-k
 
 const {width, height} = Dimensions.get('screen');
 
-const SignIn = () => {
+const SignIn = props => {
   return (
     <>
-      <Header title="Terms of Use" />
+      <Header {...props} title="Terms of Use" />
       <View style={{
         ...StyleSheet.absoluteFillObject,
         top: height / 4,

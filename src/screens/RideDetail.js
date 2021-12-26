@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   KeyboardAvoidingView,
   Keyboard,
@@ -10,70 +10,169 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
+import dateformat from 'dateformat';
 import {useSelector, useDispatch} from 'react-redux';
-import {Layout, Button as UIButton, Icon} from '@ui-kitten/components';
+import {Layout, Button as UIButton, Spinner, Icon} from '@ui-kitten/components';
+
 import Button from '../components/Button';
 import BookingInfo from '../components/BookingInfo';
 import Text from '../components/Text';
 import Header from '../components/Header3';
 import theme from '../constants/theme';
+import {getSessionDetail} from '../redux/actions/session';
+import {priceFormat} from '../helpers/display';
+import {AppContext} from '../providers/AppProvider';
 
 const {width, height} = Dimensions.get('screen');
 
 const RideDetail = props => {
+  const {t} = useContext(AppContext);
+  const {route} = props;
+  const {sessionId} = route.params || {};
+  const dispatch = useDispatch();
+  const SessionState = useSelector(state => state.Session);
+  const {
+    historyDetail: {isLoading, data},
+  } = SessionState;
+
+  useEffect(() => {
+    dispatch(getSessionDetail(sessionId));
+  }, [dispatch, sessionId]);
+
+  console.log('data', data);
+
   return (
     <>
-      <Header title="Transaction detail" {...props} small hideRightMenu />
-      <View style={{
-        ...StyleSheet.absoluteFillObject,
-        top: height / 4,
-        flex: 1,
-        paddingTop: 30,
-      }}>
+      <Header title={t('transaction_detail')} {...props} small hideRightMenu />
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          top: height / 4,
+          flex: 1,
+          paddingTop: 30,
+        }}>
         <Layout style={[styles.container]}>
-          <View style={{
-            top: -50,
-            paddingHorizontal: 20,
-          }}>
-            <BookingInfo />
-          </View>
-          <ScrollView
-            style={styles.content}
-            showsVerticalScrollIndicator={false}>
-            <View style={[theme.block.blockMiddleBetween, {
-              paddingBottom: 20, borderBottomWidth: 1, borderBottomColor: theme.color.border, marginBottom: 20
-            }]}>
-              <View>
-                <Text color={theme.color.gray}>Time:</Text>
-                <Text bold size={18}>60 min</Text>
-              </View>
-              <View>
-                <Text color={theme.color.gray}>Price:</Text>
-                <Text bold size={18}>380,000</Text>
-              </View>
-              <View>
-                <Text color={theme.color.gray}>Distance:</Text>
-                <Text bold size={18}>2,8 km</Text>
-              </View>
+          {isLoading ? (
+            <View style={[theme.block.rowCenter, theme.block.marginTop(20)]}>
+              <Spinner />
             </View>
-            <View style={{ paddingBottom: 20, borderBottomWidth: 1, borderBottomColor: theme.color.border, marginBottom: 20 }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 15 }}>
-                <Text size={15}>Date & Time</Text>
-                <Text size={13}>28 February 2021 at 9:42am</Text>
+          ) : (
+            <>
+              <View
+                style={{
+                  top: -50,
+                  paddingHorizontal: 20,
+                }}>
+                <BookingInfo
+                  data={[
+                    {
+                      label: t('therapist_name'),
+                      value: data?.therapist_name || '--',
+                    },
+                    {
+                      label: t('booking_address'),
+                      value: data?.client_address,
+                    },
+                  ]}
+                />
               </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 15 }}>
-                <Text size={15}>Type of Massage</Text>
-                <Text size={13}>Thai Massage</Text>
-              </View>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 15 }}>
-                <Text size={15}>Special Request</Text>
-                <Text size={13}>Avoid knee area due to injury.</Text>
-              </View>
-            </View>
-            <View>
-              <Text size={12} color={theme.color.primary}>This session was towards your area you received Guaranteed fee.</Text>
-            </View>
-          </ScrollView>
+              <ScrollView
+                style={styles.content}
+                showsVerticalScrollIndicator={false}>
+                <View
+                  style={[
+                    theme.block.blockMiddleBetween,
+                    {
+                      paddingBottom: 20,
+                      borderBottomWidth: 1,
+                      borderBottomColor: theme.color.border,
+                      marginBottom: 20,
+                    },
+                  ]}>
+                  <View>
+                    <Text color={theme.color.gray}>{t('time')}:</Text>
+                    <Text bold size={18}>
+                      {t('mins', {
+                        mins: data?.request_services[0]?.duration || '--',
+                      })}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text color={theme.color.gray}>{t('price')}:</Text>
+                    <Text bold size={18}>
+                      {priceFormat(data?.total_amount)}
+                    </Text>
+                  </View>
+                  <View>
+                    <Text color={theme.color.gray}>{t('distance')}:</Text>
+                    <Text bold size={18}>
+                      2,8 km
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    paddingBottom: 20,
+                    borderBottomWidth: 1,
+                    borderBottomColor: theme.color.border,
+                    marginBottom: 20,
+                  }}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-end',
+                      marginBottom: 15,
+                    }}>
+                    <Text size={15}>{t('date_and_time')}</Text>
+                    <Text size={13}>
+                      {dateformat(data?.created_at, 'dd/mm/yyyy hh:MM')}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-end',
+                      marginBottom: 15,
+                    }}>
+                    <Text size={15}>{t('type_of_massage')}</Text>
+                    <Text size={13}>
+                      {data?.request_services[0]?.group_service_name}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-end',
+                      marginBottom: 15,
+                    }}>
+                    <Text size={15}>{t('special_request')}</Text>
+                    <Text size={13}>{data?.note || '--'}</Text>
+                  </View>
+                </View>
+                {/* <View>
+                  <Text size={12} color={theme.color.primary}>This session was towards your area you received Guaranteed fee.</Text>
+                </View> */}
+                <View style={theme.block.rowMiddleCenter}>
+                  {Array(5)
+                    .fill('')
+                    .map((_, index) => (
+                      <Icon
+                        style={styles.starIcon}
+                        fill={
+                          index + 1 <= data?.therapist_rating
+                            ? '#FAD647'
+                            : '#8F9BB3'
+                        }
+                        name="star"
+                      />
+                    ))}
+                </View>
+              </ScrollView>
+            </>
+          )}
         </Layout>
       </View>
     </>
@@ -160,5 +259,10 @@ const styles = StyleSheet.create({
   },
   contactValue: {
     fontSize: 15,
+  },
+  starIcon: {
+    width: 24,
+    height: 24,
+    marginHorizontal: 3,
   },
 });

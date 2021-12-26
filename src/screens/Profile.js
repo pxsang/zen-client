@@ -1,43 +1,30 @@
-import React, {useState, useRef} from 'react';
-import {
-  KeyboardAvoidingView,
-  Keyboard,
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  TouchableWithoutFeedback,
-  Platform,
-  Dimensions,
-} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {Layout, Button as UIButton, Icon} from '@ui-kitten/components';
+import React, {useContext} from 'react';
+import {StyleSheet, View, ScrollView, Image, Dimensions} from 'react-native';
+import {useSelector} from 'react-redux';
+import {Layout} from '@ui-kitten/components';
 import Button from '../components/Button';
+import UserAvatar from '../components/UserAvatar';
 import Text from '../components/Text';
 import Header from '../components/Header3';
 import theme from '../constants/theme';
+import {AppContext} from '../providers/AppProvider';
+import {phoneNumberFormat, ratingFormat} from '../helpers/display';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 const Profile = props => {
-  const {navigation} = props;
+  const UserState = useSelector(state => state.User);
+  const {userInfo} = UserState;
+  const {t, logout} = useContext(AppContext);
 
   return (
     <>
-      <Header title="MY ACCOUNT" {...props} small hideRightMenu />
-      <View style={{
-        ...StyleSheet.absoluteFillObject,
-        top: height / 4,
-        flex: 1,
-        paddingTop: 30,
-      }}>
-        <Layout style={[styles.container]}>
+      <Header title={t('my_account')} {...props} small hideRightMenu />
+      <View style={styles.container}>
+        <Layout style={styles.contentContainer}>
           <View style={styles.header}>
             <View style={styles.avatarContainer}>
-              <Image
-                style={styles.avatarImage}
-                source={require('../assets/icons/avatar.png')}
-              />
+              <UserAvatar style={styles.avatarImage} />
             </View>
           </View>
           <ScrollView
@@ -45,42 +32,35 @@ const Profile = props => {
             contentContainerStyle={{paddingBottom: 40}}
             showsVerticalScrollIndicator={false}>
             <View style={styles.section}>
-              <Text bold center style={styles.fullname}>Poppet Celdran</Text>
-              <Text bold center style={styles.rating}>4,75</Text>
-            </View>
-            <View style={[styles.section, styles.sectionHorizontal]}>
-              <View style={styles.summaryItem}>
-                <Text style={styles.summaryLabel}>Total Sessions:</Text>
-                <Text bold style={styles.summaryValue}>62</Text>
-              </View>
-              <View style={styles.summaryItem}>
-                <Text style={styles.summaryLabel}>Earned:</Text>
-                <Text bold style={styles.summaryValue}>9,424,000d</Text>
-              </View>
-              <View style={styles.summaryItem}>
-                <Text style={styles.summaryLabel}>Years:</Text>
-                <Text bold style={styles.summaryValue}>0.3</Text>
-              </View>
+              <Text bold center style={styles.fullname}>
+                {userInfo.name}
+              </Text>
+              <Text bold center style={styles.rating}>
+                {ratingFormat(userInfo?.rating || 0)}
+              </Text>
             </View>
             <View style={styles.section}>
               <View style={styles.contactInfo}>
-                <Text style={styles.contactLabel}>Phone</Text>
-                <Text style={styles.contactValue}>+84 909074793</Text>
+                <Text style={styles.contactLabel}>{t('phone_number')}</Text>
+                <Text style={styles.contactValue}>
+                  {phoneNumberFormat(userInfo.phone_number)}
+                </Text>
               </View>
               <View style={styles.contactInfo}>
-                <Text style={styles.contactLabel}>Email</Text>
-                <Text style={styles.contactValue}>poppetceldran@gmail.com</Text>
+                <Text style={styles.contactLabel}>{t('email')}</Text>
+                <Text style={styles.contactValue}>
+                  {userInfo.email || '--'}
+                </Text>
               </View>
               <View style={[styles.contactInfo, styles.contactInfoLast]}>
-                <Text style={styles.contactLabel}>Language</Text>
-                <Text style={styles.contactValue}>Spanish, English </Text>
+                <Text style={styles.contactLabel}>{t('language')}</Text>
+                <Text style={styles.contactValue}>Vietnamese, English</Text>
               </View>
             </View>
             <View style={styles.footer}>
-              <Button
-                appearance="rounded"
-                onPress={() => navigation.navigate('SignIn')}
-              >Log Out</Button>
+              <Button appearance="rounded" onPress={logout}>
+                {t('logout')}
+              </Button>
             </View>
           </ScrollView>
         </Layout>
@@ -93,6 +73,12 @@ export default Profile;
 
 const styles = StyleSheet.create({
   container: {
+    ...StyleSheet.absoluteFillObject,
+    top: height / 4,
+    flex: 1,
+    paddingTop: 30,
+  },
+  contentContainer: {
     flex: 1,
     borderTopLeftRadius: 64,
     borderTopRightRadius: 64,

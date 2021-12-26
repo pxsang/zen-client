@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text as RNText} from 'react-native';
+import I18n from '../i18n';
 
 const Text = ({
-  light,
   semiBold,
   bold,
   extraBold,
@@ -11,11 +11,11 @@ const Text = ({
   size,
   color,
   style,
+  i18nKey,
   ...otherProps
 }) => {
   let textStyles = [styles.defaultStyle, style];
 
-  if (light) textStyles.push(styles.light);
   if (semiBold) textStyles.push(styles.semiBold);
   if (bold) textStyles.push(styles.bold);
   if (extraBold) textStyles.push(styles.extraBold);
@@ -35,19 +35,16 @@ export default Text;
 
 const styles = StyleSheet.create({
   defaultStyle: {
-    fontFamily: 'Poppins-Regular',
-  },
-  light: {
-    fontFamily: 'Poppins-Light',
+    fontFamily: 'Baloo2-Regular',
   },
   bold: {
-    fontFamily: 'Poppins-Bold',
+    fontFamily: 'Baloo2-SemiBold',
   },
   semiBold: {
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Baloo2-Medium',
   },
   extraBold: {
-    fontFamily: 'Poppins-ExtraBold',
+    fontFamily: 'Baloo2-Bold',
   },
   center: {
     textAlign: 'center',

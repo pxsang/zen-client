@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import theme from '../constants/theme';
 import {Layout, Icon} from '@ui-kitten/components';
-import Text from '../components/Text';
+import UserAvatar from '../components/UserAvatar';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 
@@ -28,17 +28,15 @@ const Header2 = () => {
         </View>
         <TouchableWithoutFeedback
           onPress={() => navigation.navigate('Profile')}>
-            <View style={{
+          <View
+            style={{
               width: 40,
               height: 40,
               borderRadius: 20,
               overflow: 'hidden',
             }}>
-              <Image
-                style={styles.avatar}
-                source={require('../assets/icons/user-avatar.png')}
-              />
-            </View>
+            <UserAvatar style={styles.avatar} />
+          </View>
         </TouchableWithoutFeedback>
       </View>
     </Layout>

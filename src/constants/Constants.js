@@ -112,9 +112,58 @@ export const MASSAGE_TYPE_LIST = [
 
 export const STATUS = {
   PREPARE_DATA: 0,
-  WAITING_FOR_ACCEPT: 1,
+  WAITING_FOR_PAYMENT: 1,
+  WAITING_FOR_ACCEPT: 2,
+  ACCEPTED: 3,
+  ARRIVED: 4,
+  STARTED: 5,
+  COMPLETED: 6,
+};
+
+export const LANGUAGE = {
+  ENGLISH: 'en',
+  VIETNAMESE: 'vi',
+};
+
+export const LANGUAGE_TITLE = {
+  en: 'English',
+  vi: 'Tiếng Việt',
+};
+
+export const LANGUAGE_LIST = [
+  {title: 'Tiếng Việt', value: LANGUAGE.VIETNAMESE},
+  {title: 'English', value: LANGUAGE.ENGLISH},
+];
+
+export const SESSION_STATUS = {
+  WAITING_FOR_THERAPIST: 1,
   ACCEPTED: 2,
   ARRIVED: 3,
   STARTED: 4,
   COMPLETED: 5,
+  FAILED: 6,
+  CANCELED: 7,
+  FINISHED: 8,
+  WAITING_FOR_PAYMENT: 10,
+};
+
+export const GENDER = {
+  MALE: 'male',
+  FEMALE: 'female',
+};
+
+export const GENDER_LABEL = {
+  [GENDER.MALE]: 'Male',
+  [GENDER.FEMALE]: 'Female',
+};
+
+export const GENDER_LIST = [
+  {value: 'male', label: 'Male'},
+  {value: 'female', label: 'Female'},
+];
+
+export const USER_STATUS = {
+  NEW: 1,
+  VERIFIED: 2,
+  REJECTED: 3,
 };

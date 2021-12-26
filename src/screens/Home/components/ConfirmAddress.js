@@ -6,7 +6,7 @@ import Button from '../../../components/Button';
 
 import theme from '../../../constants/theme';
 
-const ConfirmAddress = ({onBack, onConfirm}) => {
+const ConfirmAddress = ({address, t, onBack, onConfirm, onChange}) => {
   return (
     <View>
       <TouchableWithoutFeedback onPress={onBack}>
@@ -18,19 +18,23 @@ const ConfirmAddress = ({onBack, onConfirm}) => {
           />
         </View>
       </TouchableWithoutFeedback>
+      {/* <TouchableWithoutFeedback onPress={onChange}> */}
       <View style={styles.addressContainer}>
         <Icon style={styles.pinIcon} fill={theme.color.primary} name="pin" />
-        <View>
-          <Text semiBold>Garden Course 2</Text>
+        <View style={{
+          flexShrink: 1,
+        }}>
+          <Text semiBold>{address.title}</Text>
           <View height={5} />
           <Text color={theme.color.secondary} size={12}>
-            147 Tôn Dật Tiên, Tân Phong, Quận 7
+            {address.address}
           </Text>
         </View>
       </View>
+      {/* </TouchableWithoutFeedback> */}
       <View style={styles.footer}>
         <Button icon="arrow-forward-outline" onPress={onConfirm}>
-          Confirm
+          {t('confirm')}
         </Button>
       </View>
     </View>

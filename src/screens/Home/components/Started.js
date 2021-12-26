@@ -1,102 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import {StyleSheet, View, TouchableWithoutFeedback, Image} from 'react-native';
-import {Icon} from '@ui-kitten/components';
+import React, {useEffect, useState, useCallback} from 'react';
+import {StyleSheet, View} from 'react-native';
 import Text from '../../../components/Text';
-import Button from '../../../components/Button';
-import {numberFormat} from '../../../helpers/display';
-import {STATUS} from '../../../constants/Constants';
+import TherapistInfo from '../../../components/TherapistInfo';
+import PaymentSummary from '../../../components/PaymentSummary';
 import theme from '../../../constants/theme';
 
-const Started = ({onStatusChange, onBack, onConfirm}) => {
-  let [meaningTime, setMeaningTime] = useState(10);
+const Started = ({t, sessionDetail}) => {
+  const getMeaningTime = useCallback(() => {
+    const delta = new Date().getTime() - sessionDetail?.started_at;
+    const remaining =
+      sessionDetail?.request_services[0].duration - delta / 60000;
+
+    return remaining <= 0 ? 0 : Math.ceil(remaining);
+  }, [sessionDetail]);
+
+  let [meaningTime, setMeaningTime] = useState(getMeaningTime());
 
   useEffect(() => {
     let interval = setInterval(() => {
-      setMeaningTime(meaningTime - 1);
-    }, 1000);
+      setMeaningTime(getMeaningTime());
+    }, 60 * 1000);
 
-    if (meaningTime === 0) {
-      onStatusChange(STATUS.COMPLETED);
+    if (meaningTime <= 0) {
       clearInterval(interval);
     }
 
     return () => clearInterval(interval);
-  }, [meaningTime, onStatusChange]);
+  }, [meaningTime, sessionDetail, getMeaningTime]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-          <Text semiBold>
-            Therapy will end in
-          </Text>
-          <View style={{ backgroundColor: theme.color.gray, paddingVertical: 3, paddingHorizontal: 7, borderRadius: 20, marginLeft: 5 }}>
-            <Text semiBold>{meaningTime} mins</Text>
+        <View style={theme.block.rowMiddle}>
+          <Text semiBold>{t('therapy_will_end_in')}</Text>
+          <View style={styles.remainingContainer}>
+            <Text semiBold>{t('mins', {mins: meaningTime})}</Text>
           </View>
         </View>
-        <Text size={13} color={theme.color.secondary}>Thai or Swedish</Text>
+        <Text size={13} color={theme.color.secondary}>
+          {sessionDetail?.request_services[0].group_service_name}
+        </Text>
       </View>
       <View style={styles.content}>
-        <View style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-          <Image source={require('../../../assets/icons/user-avatar.png')} style={{ width: 64, height: 64, borderRadius: 14 }} />
-          <View style={{
-            marginLeft: 15,
-          }}>
-            <Text semiBold size={18}>Cris Sang</Text>
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-              <Icon
-                style={styles.starIcon}
-                fill="#FAD647"
-                name="star"
-              />
-              <View width={5} />
-              <Text semiBold size={13}>4.9</Text>
-            </View>
-          </View>
-        </View>
+        <TherapistInfo data={sessionDetail?.therapist} />
       </View>
-      {/* <View style={{
-        paddingVertical: 15
-      }}>
-        <View style={styles.massageTypeItemContainer}>
-          <View>
-            <Text semiBold>Thai or Swedish</Text>
-            <View height={5} />
-            <Text size={12}>60 mins</Text>
-          </View>
-          <View>
-            <Text semiBold>{numberFormat(380000)}đ</Text>
-          </View>
-        </View>
-      </View> */}
-      <View style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: theme.color.border,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
-        borderRadius: 15,
-        marginTop: 15,
-      }}>
-        <View style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}>
-          <Image source={require('../../../assets/icons/momo.png')} style={{ width: 32, height: 32, marginRight: 15 }} />
-          <Text semiBold size={16}>MoMo</Text>
-        </View>
-        <Text semiBold>380,000đ</Text>
-      </View>
+      <View height={15} />
+      <PaymentSummary totalAmount={sessionDetail?.total_amount} />
     </View>
   );
 };
@@ -142,5 +91,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: theme.color.primary,
     borderWidth: 1,
+  },
+  remainingContainer: {
+    backgroundColor: theme.color.gray,
+    paddingVertical: 3,
+    paddingHorizontal: 7,
+    borderRadius: 20,
+    marginLeft: 5,
   },
 });

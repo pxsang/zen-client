@@ -3,36 +3,34 @@ import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native';
 import {Icon} from '@ui-kitten/components';
 import {Portal} from 'react-native-portalize';
 import {Modalize} from 'react-native-modalize';
+import {useSelector} from 'react-redux';
 import Text from '../../../components/Text';
 import Button from '../../../components/Button';
-import {MASSAGE_TYPE_LIST} from '../../../constants/Constants';
+import PaymentSummary from '../../../components/PaymentSummary';
 import theme from '../../../constants/theme';
 import {numberFormat} from '../../../helpers/display';
 
-const ALL_MASSAGE_TYPES = MASSAGE_TYPE_LIST.reduce(
-  (result, item) =>
-    result.concat(...item.childs.map(_ => ({..._, name: item.name}))),
-  [],
-);
-
-const PickMassageType = ({selectedMassageId, onBack, onSelectMassageType, onBookMassage}) => {
+const PickMassageType = ({
+  t,
+  selectedService,
+  onBack,
+  onSelectService,
+  onBookMassage,
+}) => {
+  const ServiceState = useSelector(state => state.Service);
+  const {services} = ServiceState;
   const modalizeRef = useRef(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-
-  const onClose = () => {
-    modalizeRef.current?.close();
-  };
-
-  const selectedMassageType = ALL_MASSAGE_TYPES.find(
-    _ => _.id === selectedMassageId,
+  const onOpen = () => modalizeRef.current?.open();
+  const onClose = () => modalizeRef.current?.close();
+  const selectedParentService = services.find(
+    _ => _.id === selectedService.service_id,
   );
-
-  const suggestionMassageType = ALL_MASSAGE_TYPES.find(
-    _ => _.name !== selectedMassageType.name,
-  );
+  const selectedServiceData = {
+    service: selectedParentService,
+    sub_service: selectedParentService?.sub_services.find(
+      _ => _.id === selectedService.sub_service_id,
+    ),
+  };
 
   return (
     <View>
@@ -46,28 +44,27 @@ const PickMassageType = ({selectedMassageId, onBack, onSelectMassageType, onBook
         </View>
       </TouchableWithoutFeedback>
       <View style={styles.header}>
-        <Text semiBold>Suggested Massage Types</Text>
+        <Text semiBold>{t('suggested_massage_type')}</Text>
         <TouchableWithoutFeedback onPress={onOpen}>
           <Text bold color={theme.color.info}>
-            View All
+            {t('view_all')}
           </Text>
         </TouchableWithoutFeedback>
       </View>
       <View>
-        <MassageTypeItem data={selectedMassageType} isSelected />
-        <MassageTypeItem
-          data={suggestionMassageType}
-          onSelect={id => onSelectMassageType(id)}
-        />
+        <MassageTypeItem data={selectedServiceData} isSelected />
       </View>
       <View style={styles.footer}>
+        <PaymentSummary totalAmount={selectedServiceData.sub_service.price} />
+        <View height={20} />
         <Button icon="arrow-forward-outline" onPress={onBookMassage}>
-          Book Massage
+          {t('book_massage')}
         </Button>
       </View>
       <Portal>
         <Modalize
           ref={modalizeRef}
+          closeOnOverlayTap={true}
           HeaderComponent={() => (
             <>
               <View
@@ -76,14 +73,14 @@ const PickMassageType = ({selectedMassageId, onBack, onSelectMassageType, onBook
                   theme.block.paddingVertical(20),
                 ]}>
                 <Text bold size={16} color={theme.color.primary}>
-                  Select Massage Type
+                  {t('select_massage_type')}
                 </Text>
               </View>
               <View style={styles.separator} />
             </>
           )}
           flatListProps={{
-            data: MASSAGE_TYPE_LIST,
+            data: services,
             renderItem: ({item}) => (
               <View key={item.id} style={theme.block.paddingVertical(10)}>
                 <View
@@ -95,32 +92,27 @@ const PickMassageType = ({selectedMassageId, onBack, onSelectMassageType, onBook
                     {item.name}
                   </Text>
                 </View>
-                {item.childs.map(_ => {
-                  const isSelected = _.id === selectedMassageId;
+                {item.sub_services.map(_ => {
+                  const isSelected =
+                    selectedService.service_id === item.id &&
+                    _.id === selectedService.sub_service_id;
 
                   return (
                     <TouchableWithoutFeedback
                       key={_.id}
                       onPress={() => {
-                        onSelectMassageType(_.id);
+                        onSelectService({
+                          service_id: item.id,
+                          sub_service_id: _.id,
+                        });
                         onClose();
                       }}>
-                      <View style={{
-                        backgroundColor: isSelected ? 'rgba(241, 140, 142, 0.08)' : 'transparent',
-                        paddingHorizontal: 15,
-                        paddingLeft: 30,
-                      }}>
-                        <View style={{
-                          flexDirection: 'row',
-                          justifyContent: 'space-between',
-                          paddingVertical: 15,
-                          borderBottomColor: theme.color.border,
-                          borderBottomWidth: 0.5,
-                        }}>
+                      <View style={styles.subServiceContainer(isSelected)}>
+                        <View style={styles.subServiceContent}>
                           <View>
                             <Text semiBold>{item.name}</Text>
                             <View height={5} />
-                            <Text size={12}>{_.time} mins</Text>
+                            <Text size={12}>{_.duration} mins</Text>
                           </View>
                           <View>
                             <Text semiBold>{numberFormat(_.price)}đ</Text>
@@ -132,7 +124,7 @@ const PickMassageType = ({selectedMassageId, onBack, onSelectMassageType, onBook
                 })}
               </View>
             ),
-            keyExtractor: item => item.heading,
+            keyExtractor: item => item.id,
             showsVerticalScrollIndicator: false,
           }}
         />
@@ -148,12 +140,12 @@ const MassageTypeItem = ({data, isSelected, onSelect}) => {
     <TouchableWithoutFeedback onPress={() => onSelect && onSelect(data.id)}>
       <View style={styles.massageTypeItemContainer(isSelected)}>
         <View>
-          <Text semiBold>{data.name}</Text>
+          <Text semiBold>{data.service.name}</Text>
           <View height={5} />
-          <Text size={12}>{data.time} mins</Text>
+          <Text size={12}>{data.sub_service.duration} mins</Text>
         </View>
         <View>
-          <Text semiBold>{numberFormat(data.price)}đ</Text>
+          <Text semiBold>{numberFormat(data.sub_service.price)}đ</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -200,5 +192,17 @@ const styles = StyleSheet.create({
   separator: {
     height: 8,
     backgroundColor: theme.color.border,
+  },
+  subServiceContainer: isSelected => ({
+    backgroundColor: isSelected ? 'rgba(241, 140, 142, 0.08)' : 'transparent',
+    paddingHorizontal: 15,
+    paddingLeft: 30,
+  }),
+  subServiceContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 15,
+    borderBottomColor: theme.color.border,
+    borderBottomWidth: 0.5,
   },
 });
