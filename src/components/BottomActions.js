@@ -1,19 +1,17 @@
-import React, {useRef, useEffect, useContext} from 'react';
-import {StyleSheet, View, TouchableWithoutFeedback, Dimensions} from 'react-native';
+import React, {useRef, useEffect} from 'react';
+import {StyleSheet, View, TouchableWithoutFeedback} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Portal} from 'react-native-portalize';
 import {Modalize} from 'react-native-modalize';
 import Text from '../components/Text';
 
 import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
-
-const {width, height} = Dimensions.get('screen');
+import useTranslate from '../hooks/useTranslate';
 
 const BottomActions = ({isVisible, onClose, actions}) => {
+  const t = useTranslate();
   const modalizeRef = useRef(null);
   const safeArea = useSafeAreaInsets();
-  const {t} = useContext(AppContext);
 
   useEffect(() => {
     if (isVisible) {
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
   modalStyle: safeArea => ({
     backgroundColor: 'transparent',
     paddingHorizontal: 10,
-    marginBottom: safeArea. bottom || 10,
+    marginBottom: safeArea.bottom || 10,
   }),
   handleStyle: {
     display: 'none',

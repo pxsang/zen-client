@@ -1,13 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Text from './Text';
 import Image from './Image';
-import {AppContext} from '../providers/AppProvider';
 import theme from '../constants/theme';
 import {priceFormat} from '../helpers/display';
+import useTranslate from '../hooks/useTranslate';
 
 const PaymentSummary = ({totalAmount}) => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
 
   return (
     <View style={styles.container}>

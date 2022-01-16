@@ -7,8 +7,11 @@ import TherapistContact from '../../../components/TherapistContact';
 import TherapistInfo from '../../../components/TherapistInfo';
 
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const Accepted = ({t, sessionDetail, onCancel}) => {
+const Accepted = ({sessionDetail, onCancel}) => {
+  const t = useTranslate();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

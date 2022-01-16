@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {StyleSheet, View, ScrollView, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, ScrollView, Dimensions} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Layout} from '@ui-kitten/components';
 import Button from '../components/Button';
@@ -9,13 +9,15 @@ import Header from '../components/Header3';
 import theme from '../constants/theme';
 import {AppContext} from '../providers/AppProvider';
 import {phoneNumberFormat, ratingFormat} from '../helpers/display';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const Profile = props => {
   const UserState = useSelector(state => state.User);
   const {userInfo} = UserState;
-  const {t, logout} = useContext(AppContext);
+  const {logout} = useContext(AppContext);
+  const t = useTranslate();
 
   return (
     <>

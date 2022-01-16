@@ -1,25 +1,21 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
-  ScrollView,
-  Platform,
   Dimensions,
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import {Layout, Button as UIButton, Icon} from '@ui-kitten/components';
-import Button from '../components/Button';
+import {Layout, Icon} from '@ui-kitten/components';
 import Text from '../components/Text';
 import Header from '../components/Header3';
-import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 const Support = props => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
+
   return (
     <>
       <Header title={t('support')} {...props} />
@@ -32,38 +28,6 @@ const Support = props => {
         }}>
         <Layout style={[styles.container]}>
           <View style={styles.content}>
-            {/* <TouchableOpacity>
-          <View style={{
-            padding: 25,
-            borderRadius: 12,
-            backgroundColor: 'white',
-            shadowColor: '#303030',
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowOpacity: 0.1,
-            shadowRadius: 10,
-            elevation: 10,
-            marginBottom: 40,
-          }}>
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-              <Icon
-                style={{
-                  width: 24,
-                  height: 24,
-                  marginRight: 15,
-                }}
-                fill='#47D1C3'
-                name='message-square-outline'
-              />
-              <Text semiBold size={16}>{t('chat_with_cs')}</Text>
-            </View>
-          </View>
-        </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => Linking.openURL(`tel:${'0981346304'}`)}>
               <View

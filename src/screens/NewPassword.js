@@ -1,23 +1,23 @@
-import React, {useState, useRef, useEffect, useContext} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   View,
   StyleSheet,
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import Button from '../components/Button';
 import {Input, Icon} from '@ui-kitten/components';
 import {setPassword} from '../redux/actions/user';
-import {AppContext} from '../providers/AppProvider';
 import theme from '../constants/theme';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const NewPassword = props => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   const zoomIconRef = useRef();
   const dispatch = useDispatch();
   // const UserState = useSelector(state => state.User);

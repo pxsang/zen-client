@@ -6,8 +6,10 @@ import Button from '../../../components/Button';
 import PaymentSummary from '../../../components/PaymentSummary';
 
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const WaitingForAccept = ({t, sessionDetail, onCancel}) => {
+const WaitingForAccept = ({sessionDetail, onCancel}) => {
+  const t = useTranslate();
   const handleRePayment = useCallback(
     () => Linking.openURL(sessionDetail.pay_url),
     [sessionDetail],

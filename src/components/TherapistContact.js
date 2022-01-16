@@ -1,13 +1,7 @@
-import React, {useContext} from 'react';
-import {StyleSheet, View, TouchableOpacity, Linking} from 'react-native';
-import {Icon} from '@ui-kitten/components';
-import Text from './Text';
+import {StyleSheet} from 'react-native';
 import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
 
 const TherapistContact = ({data}) => {
-  const {t} = useContext(AppContext);
-
   return null;
   // return (
   //   <View style={styles.container}>

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
   ScrollView,
   Keyboard,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {Input, Icon} from '@ui-kitten/components';
 import Header from '../components/Header';
 import Text from '../components/Text';
@@ -18,12 +18,12 @@ import GhostButton from '../components/GhostButton';
 import {phoneValidator, convertTo0PhoneNumber} from '../helpers/display';
 import {loginWithPassword} from '../redux/actions/user';
 import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const SignIn = props => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   const dispatch = useDispatch();
   const {navigation} = props;
   let [phoneNumber, setPhoneNumber] = useState('');
@@ -129,12 +129,10 @@ const SignIn = props => {
                 <TouchableWithoutFeedback
                   onPress={() => navigation.navigate('TermOfUse')}>
                   <Text>
-                    <Text>
-                      By continuing, I confirm that i have read & agree to the
-                    </Text>
-                    <Text bold> Terms & conditions</Text>
-                    <Text> and </Text>
-                    <Text bold>Privacy policy</Text>
+                    <Text>{t('terms_description_1')}</Text>{' '}
+                    <Text bold>{t('terms_description_2')}</Text>{' '}
+                    <Text>{t('terms_description_3')} </Text>{' '}
+                    <Text bold>{t('terms_description_4')}</Text>
                   </Text>
                 </TouchableWithoutFeedback>
               </ScrollView>

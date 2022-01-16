@@ -1,32 +1,21 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {
-  KeyboardAvoidingView,
-  Keyboard,
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  TouchableWithoutFeedback,
-  Platform,
-  Dimensions,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {StyleSheet, View, ScrollView, Dimensions} from 'react-native';
 import dateformat from 'dateformat';
 import {useSelector, useDispatch} from 'react-redux';
-import {Layout, Button as UIButton, Spinner, Icon} from '@ui-kitten/components';
+import {Layout, Spinner, Icon} from '@ui-kitten/components';
 
-import Button from '../components/Button';
 import BookingInfo from '../components/BookingInfo';
 import Text from '../components/Text';
 import Header from '../components/Header3';
 import theme from '../constants/theme';
 import {getSessionDetail} from '../redux/actions/session';
 import {priceFormat} from '../helpers/display';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 const RideDetail = props => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   const {route} = props;
   const {sessionId} = route.params || {};
   const dispatch = useDispatch();
@@ -38,8 +27,6 @@ const RideDetail = props => {
   useEffect(() => {
     dispatch(getSessionDetail(sessionId));
   }, [dispatch, sessionId]);
-
-  console.log('data', data);
 
   return (
     <>

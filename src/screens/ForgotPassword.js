@@ -1,6 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import Button from '../components/Button';
@@ -8,14 +8,14 @@ import GhostButton from '../components/GhostButton';
 import {Input, Icon} from '@ui-kitten/components';
 import {forgotPassword} from '../redux/actions/user';
 import {phoneValidator, convertTo0PhoneNumber} from '../helpers/display';
-import {AppContext} from '../providers/AppProvider';
 import theme from '../constants/theme';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const ForgotPassword = props => {
   const dispatch = useDispatch();
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   const {navigation} = props;
   // const UserState = useSelector(state => state.User);
   // const {isLoading, isFailed, errorMessage} = UserState.forgotPassword;

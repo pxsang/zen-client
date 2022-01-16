@@ -1,16 +1,8 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  useContext,
-  useRef,
-} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import {
   View,
   StyleSheet,
   Alert,
-  Image,
   Platform,
   PermissionsAndroid,
   ScrollView,
@@ -18,34 +10,21 @@ import {
   Dimensions,
 } from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import {
-  Layout,
-  Icon,
-  Input,
-  Divider,
-  List,
-  ListItem,
-} from '@ui-kitten/components';
+import {Layout, Icon} from '@ui-kitten/components';
 import {useDispatch, useSelector} from 'react-redux';
 import _ from 'underscore';
 import firestore from '@react-native-firebase/firestore';
-import {Modalize} from 'react-native-modalize';
-// import Geolocation from '@react-native-community/geolocation';
 import Geolocation from 'react-native-geolocation-service';
 // import Geocoder from 'react-native-geocoding';
 // SKIP DIRECTIONS
 import MapViewDirections from 'react-native-maps-directions';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {Value, set, useCode} from 'react-native-reanimated';
-import {timing} from 'react-native-redash/lib/module/v1';
+import {Value} from 'react-native-reanimated';
 import Header from '../../components/Header2';
 import Text from '../../components/Text';
-import Button from '../../components/Button';
 import CircularProgress from '../../components/CircularProgress';
-import GhostButton from '../../components/GhostButton';
 import BookingInfo from '../../components/BookingInfo';
 import theme from '../../constants/theme';
-import {numberFormat} from '../../helpers/display';
 
 import PickAddress from './components/PickAddress';
 import ConfirmAddress from './components/ConfirmAddress';
@@ -66,9 +45,9 @@ import {
   clean,
 } from '../../redux/actions/session';
 import CompletedSession from './components/CompletedSession';
-import {AppContext} from '../../providers/AppProvider';
 // import {details, geocode} from '../../third-party/goong';
 import {details, geocode} from '../../third-party/google-maps';
+import useTranslate from '../../hooks/useTranslate';
 
 const {width, height} = Dimensions.get('window');
 
@@ -96,7 +75,7 @@ const Home = () => {
   const {userInfo} = UserState;
   const {detail: sessionDetail} = SessionState;
   const safeArea = useSafeAreaInsets();
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   // SKIP DIRECTIONS
   let [therapistAddress, setTherapistAddress] = useState();
   let [address, setAddress] = useState();
@@ -172,6 +151,8 @@ const Home = () => {
   }, [status, sessionDetail]);
 
   useEffect(() => {
+    if (_.isEmpty(userInfo)) return;
+
     const subscriber = firestore()
       .collection('customers')
       .doc(userInfo.code)
@@ -417,7 +398,7 @@ const Home = () => {
 
   const renderFooterContent = () => {
     if (userInfo.status === USER_STATUS.REJECTED) {
-      return <DisabledUser t={t} />;
+      return <DisabledUser />;
     }
 
     switch (status) {
@@ -426,7 +407,6 @@ const Home = () => {
           if (addressConfirmed) {
             return (
               <PickMassageType
-                t={t}
                 selectedService={service}
                 onSelectService={newService => setService(newService)}
                 onBookMassage={handleCreateSession}
@@ -438,7 +418,6 @@ const Home = () => {
           return (
             <ConfirmAddress
               address={address}
-              t={t}
               onBack={() => setAddress()}
               onConfirm={() => setAddressConfirmed(true)}
             />
@@ -448,7 +427,6 @@ const Home = () => {
         return (
           <PickAddress
             currentLocation={currentLocation}
-            t={t}
             onSelectAddress={value => setAddress(value)}
           />
         );
@@ -456,7 +434,6 @@ const Home = () => {
       case STATUS.WAITING_FOR_PAYMENT:
         return (
           <WaitingForPayment
-            t={t}
             sessionDetail={sessionDetail}
             onCancel={handleCancelSession}
           />
@@ -464,7 +441,6 @@ const Home = () => {
       case STATUS.WAITING_FOR_ACCEPT:
         return (
           <WaitingForAccept
-            t={t}
             sessionDetail={sessionDetail}
             onCancel={handleCancelSession}
           />
@@ -472,7 +448,6 @@ const Home = () => {
       case STATUS.ACCEPTED:
         return (
           <Accepted
-            t={t}
             sessionDetail={sessionDetail}
             onCancel={handleCancelSession}
           />
@@ -609,7 +584,6 @@ const Home = () => {
       case STATUS.FINISHED: {
         return (
           <CompletedSession
-            t={t}
             sessionDetail={sessionDetail}
             onComplete={async rating => {
               await dispatch(completeSession(sessionDetail.id, rating));

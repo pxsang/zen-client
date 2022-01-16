@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import ReactNative, {
   View,
   StyleSheet,
@@ -9,7 +9,7 @@ import ReactNative, {
   ScrollView,
   Keyboard,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import Button from '../components/Button';
@@ -27,19 +27,17 @@ import {
 } from '@ui-kitten/components';
 import {register} from '../redux/actions/user';
 import {GENDER_LIST, GENDER_LABEL} from '../constants/Constants';
-import {AppContext} from '../providers/AppProvider';
 import theme from '../constants/theme';
 import {convertTo0PhoneNumber, phoneValidator} from '../helpers/display';
+import useTranslate from '../hooks/useTranslate';
 
 const {width, height} = Dimensions.get('screen');
 
 const CalendarIcon = props => <Icon {...props} name="calendar" />;
 
 const SignUp = props => {
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
   const dispatch = useDispatch();
-  // const UserState = useSelector(state => state.User);
-  // const {isLoading, isFailed, errorMessage} = UserState.signup;
   const {navigation} = props;
   let [selectedIndex, setSelectedIndex] = useState(0);
   let [genderIndex, setGenderIndex] = useState(new IndexPath(0));

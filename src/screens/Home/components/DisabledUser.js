@@ -2,11 +2,16 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Text from '../../../components/Text';
 import Image from '../../../components/Image';
+import useTranslate from '../../../hooks/useTranslate';
 
-const DisabledUser = ({t}) => {
+const DisabledUser = () => {
+  const t = useTranslate();
+
   return (
     <View style={styles.container}>
-      <Text bold size={24}>{t('account_deactivated')}</Text>
+      <Text bold size={24}>
+        {t('account_deactivated')}
+      </Text>
       <Image
         source={require('../../../assets/images/enable-location.png')}
         style={styles.image}

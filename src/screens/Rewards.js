@@ -7,12 +7,13 @@ import Header from '../components/Header3';
 import theme from '../constants/theme';
 import {AppContext} from '../providers/AppProvider';
 import {getProfile} from '../redux/actions/user';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const Rewards = props => {
+  const t = useTranslate();
   const dispatch = useDispatch();
-  const {t} = useContext(AppContext);
   const UserState = useSelector(state => state.User);
   const {userInfo} = UserState;
 

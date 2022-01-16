@@ -1,3 +1,5 @@
+import t from '../i18n';
+
 export const MASSAGE_TYPE_LIST = [
   {
     id: 1,
@@ -153,13 +155,13 @@ export const GENDER = {
 };
 
 export const GENDER_LABEL = {
-  [GENDER.MALE]: 'Male',
-  [GENDER.FEMALE]: 'Female',
+  [GENDER.MALE]: t('male'),
+  [GENDER.FEMALE]: t('female'),
 };
 
 export const GENDER_LIST = [
-  {value: 'male', label: 'Male'},
-  {value: 'female', label: 'Female'},
+  {value: 'male', label: t('male')},
+  {value: 'female', label: t('female')},
 ];
 
 export const USER_STATUS = {

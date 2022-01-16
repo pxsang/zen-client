@@ -1,16 +1,12 @@
-import React, {useEffect, useState, useContext, useRef} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import ReactNative, {
   KeyboardAvoidingView,
   Keyboard,
   StyleSheet,
   View,
   ScrollView,
-  Image,
-  TouchableWithoutFeedback,
-  Platform,
   Dimensions,
 } from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector, useDispatch} from 'react-redux';
 import {
@@ -22,33 +18,30 @@ import {
   Datepicker,
   Icon,
 } from '@ui-kitten/components';
-import BottomActions from '../components/BottomActions';
 import Button from '../components/Button';
 import Text from '../components/Text';
 import Header from '../components/Header3';
 import UpdateAvatar from '../components/UpdateAvatar';
-import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
 import {phoneNumberFormat} from '../helpers/display';
 import {updateProfile} from '../redux/actions/user';
 import {GENDER, GENDER_LIST, GENDER_LABEL} from '../constants/Constants';
+import useTranslate from '../hooks/useTranslate';
 
-const {width, height} = Dimensions.get('screen');
+const {height} = Dimensions.get('screen');
 
 const CalendarIcon = props => <Icon {...props} name="calendar" />;
 
 const Profile = props => {
+  const t = useTranslate();
   const dispatch = useDispatch();
   const safeArea = useSafeAreaInsets();
   const UserState = useSelector(state => state.User);
   const {userInfo} = UserState;
   const {navigation} = props;
-  const {t, logout} = useContext(AppContext);
   let [isLoading, setLoading] = useState(false);
   let [genderIndex, setGenderIndex] = useState(
     new IndexPath(userInfo.gender?.toLowerCase() === 'female' ? 1 : 0),
   );
-  let [isOpenBottomAction, setOpenBottomAction] = useState(false);
   let [formData, setFormData] = useState({
     gender: userInfo.gender?.toLowerCase() || GENDER.MALE,
     name: userInfo.name,

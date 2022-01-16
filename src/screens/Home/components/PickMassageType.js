@@ -9,17 +9,18 @@ import Button from '../../../components/Button';
 import PaymentSummary from '../../../components/PaymentSummary';
 import theme from '../../../constants/theme';
 import {numberFormat} from '../../../helpers/display';
+import useTranslate from '../../../hooks/useTranslate';
 
 const PickMassageType = ({
-  t,
   selectedService,
   onBack,
   onSelectService,
   onBookMassage,
 }) => {
+  const modalizeRef = useRef(null);
+  const t = useTranslate();
   const ServiceState = useSelector(state => state.Service);
   const {services} = ServiceState;
-  const modalizeRef = useRef(null);
   const onOpen = () => modalizeRef.current?.open();
   const onClose = () => modalizeRef.current?.close();
   const selectedParentService = services.find(
@@ -52,7 +53,7 @@ const PickMassageType = ({
         </TouchableWithoutFeedback>
       </View>
       <View>
-        <MassageTypeItem data={selectedServiceData} isSelected />
+        <MassageTypeItem data={selectedServiceData} isSelected t={t} />
       </View>
       <View style={styles.footer}>
         <PaymentSummary totalAmount={selectedServiceData.sub_service.price} />
@@ -112,7 +113,9 @@ const PickMassageType = ({
                           <View>
                             <Text semiBold>{item.name}</Text>
                             <View height={5} />
-                            <Text size={12}>{_.duration} mins</Text>
+                            <Text size={12}>
+                              {t('mins', {mins: _.duration})}
+                            </Text>
                           </View>
                           <View>
                             <Text semiBold>{numberFormat(_.price)}đ</Text>
@@ -136,13 +139,15 @@ const PickMassageType = ({
 export default PickMassageType;
 
 const MassageTypeItem = ({data, isSelected, onSelect}) => {
+  const t = useTranslate();
+
   return (
     <TouchableWithoutFeedback onPress={() => onSelect && onSelect(data.id)}>
       <View style={styles.massageTypeItemContainer(isSelected)}>
         <View>
           <Text semiBold>{data.service.name}</Text>
           <View height={5} />
-          <Text size={12}>{data.sub_service.duration} mins</Text>
+          <Text size={12}>{t('mins', {mins: data.sub_service.duration})}</Text>
         </View>
         <View>
           <Text semiBold>{numberFormat(data.sub_service.price)}đ</Text>

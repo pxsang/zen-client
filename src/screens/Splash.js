@@ -12,33 +12,32 @@ import Slide from '../components/Slide';
 import theme from '../constants/theme';
 import {AppContext} from '../providers/AppProvider';
 import {setFirstTime} from '../redux/actions/app';
+import useTranslate from '../hooks/useTranslate';
 
 const {width, height} = Dimensions.get('screen');
 
 const Splash = props => {
+  const t = useTranslate();
   const dispatch = useDispatch();
   const safeArea = useSafeAreaInsets();
   const scroll = useRef(null);
   const x = useValue(0);
   const onScroll = onScrollEvent({x});
-  const {navigation} = props;
-  const {t} = useContext(AppContext);
 
   return (
     <View style={styles.container}>
-      <View style={{
-        ...StyleSheet.absoluteFillObject,
-        top: safeArea.top || 20,
-        height: 40,
-        alignItems: 'flex-end',
-        paddingHorizontal: 20,
-        zIndex: 10,
-      }}>
+      <View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          top: safeArea.top || 20,
+          height: 40,
+          alignItems: 'flex-end',
+          paddingHorizontal: 20,
+          zIndex: 10,
+        }}>
         <SwitchLanguage />
       </View>
-      <View
-        style={{height: height * 0.6}}
-      >
+      <View style={{height: height * 0.6}}>
         <Animated.ScrollView
           ref={scroll}
           horizontal
@@ -50,23 +49,37 @@ const Splash = props => {
           bounces={false}
           {...{onScroll}}>
           {slides.map(({title, description, image}, index) => (
-            <Slide key={index} title={title} image={image} description={description} />
+            <Slide
+              key={index}
+              title={title}
+              image={image}
+              description={description}
+            />
           ))}
         </Animated.ScrollView>
       </View>
-      <View style={{ height: height * 0.4 }}>
-        <View style={{
-          top: -20,
-        }}>
-          <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
+      <View style={{height: height * 0.4}}>
+        <View
+          style={{
+            top: -20,
           }}>
-            <Image style={{ width: 160, height: 160 }} source={require('../assets/images/logo-1.png')} />
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              style={{width: 160, height: 160}}
+              source={require('../assets/images/logo-1.png')}
+            />
           </View>
           <View style={styles.pagination}>
             {slides.map((_, index) => (
-              <Dot key={index} currentIndex={divide(x, width)} {...{index, x}} />
+              <Dot
+                key={index}
+                currentIndex={divide(x, width)}
+                {...{index, x}}
+              />
             ))}
           </View>
         </View>
@@ -144,12 +157,12 @@ const slides = [
     image: require('../assets/images/splash-2.jpg'),
   },
   {
-    title: "Treat yourself",
+    title: 'Treat yourself',
     // description: 'Book your on-demand massage.',
     image: require('../assets/images/splash-3.jpg'),
   },
   {
-    title: "Get a  new expereince in health & wellness.",
+    title: 'Get a  new expereince in health & wellness.',
     // description: 'Book your on-demand massage.',
     image: require('../assets/images/splash-4.jpg'),
   },

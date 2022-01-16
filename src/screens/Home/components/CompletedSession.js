@@ -11,8 +11,11 @@ import {Icon} from '@ui-kitten/components';
 import ClientInfo from '../../../components/ClientInfo';
 import theme from '../../../constants/theme';
 import {priceFormat} from '../../../helpers/display';
+import useTranslate from '../../../hooks/useTranslate';
 
-const CompletedSession = ({t, sessionDetail, onComplete, onRating}) => {
+const CompletedSession = ({sessionDetail, onComplete, onRating}) => {
+  const t = useTranslate();
+
   let [rating, setRating] = useState(0);
 
   return (

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -18,7 +18,7 @@ import Image from '../components/Image';
 import theme from '../constants/theme';
 import {getSessionHistory} from '../redux/actions/session';
 import {priceFormat} from '../helpers/display';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
@@ -62,12 +62,12 @@ const HistoryItem = ({navigation, data}) => {
 
 const History = props => {
   const dispatch = useDispatch();
+  const t = useTranslate();
   const SessionState = useSelector(state => state.Session);
   const {
     history: {isLoading, data},
   } = SessionState;
   let [historyByDate, setHistoryByDate] = useState([]);
-  const {t} = useContext(AppContext);
 
   useEffect(() => {
     dispatch(getSessionHistory());
@@ -125,14 +125,14 @@ const History = props => {
                 ListEmptyComponent={() => (
                   <View
                     style={{justifyContent: 'center', alignItems: 'center'}}>
-                    <Text semiBold size={22}>
+                    <Text center semiBold size={22}>
                       {t('history_empty_title')}
                     </Text>
                     <Image
                       style={{width: 240, height: 240}}
                       source={require('../assets/images/looking.png')}
                     />
-                    <Text>{t('history_empty_description')}</Text>
+                    <Text center>{t('history_empty_description')}</Text>
                     <View style={styles.buttonContainer}>
                       <Button
                         appearance="rounded"

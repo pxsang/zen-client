@@ -4,8 +4,11 @@ import Text from '../../../components/Text';
 import TherapistInfo from '../../../components/TherapistInfo';
 import PaymentSummary from '../../../components/PaymentSummary';
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const Started = ({t, sessionDetail}) => {
+const Started = ({sessionDetail}) => {
+  const t = useTranslate();
+
   const getMeaningTime = useCallback(() => {
     const delta = new Date().getTime() - sessionDetail?.started_at;
     const remaining =

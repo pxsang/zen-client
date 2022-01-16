@@ -5,8 +5,11 @@ import TherapistInfo from '../../../components/TherapistInfo';
 import TherapistContact from '../../../components/TherapistContact';
 
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const Arrived = ({t, sessionDetail}) => {
+const Arrived = ({sessionDetail}) => {
+  const t = useTranslate();
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

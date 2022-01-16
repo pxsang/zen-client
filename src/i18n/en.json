@@ -100,5 +100,9 @@
   "take_a_photo": "Take a photo",
   "history_empty_title": "It looks a bit empty here!",
   "history_empty_description": "Your transactions will appear on this page. Start your first transaction by clicking the Booking button below.",
-  "tips_description": "Please feel free to give a tip to therapist if you had a good experience"
+  "tips_description": "Please feel free to give a tip to therapist if you had a good experience",
+  "terms_description_1": "By continuing, I confirm that i have read & agree to the",
+  "terms_description_2": "Terms & conditions",
+  "terms_description_3": "and",
+  "terms_description_4": "Privacy policy"
 }

@@ -1,7 +1,7 @@
-import React, {useCallback, useState, useContext, useEffect} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {View, StyleSheet, Dimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import OTP from '../components/OTP';
@@ -9,13 +9,13 @@ import GhostButton from '../components/GhostButton';
 import Button from '../components/Button';
 import theme from '../constants/theme';
 import {verifyOTP} from '../redux/actions/user';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
 const {height} = Dimensions.get('screen');
 
 const VerifyOTP = props => {
+  const t = useTranslate();
   const dispatch = useDispatch();
-  const {t} = useContext(AppContext);
   const safeArea = useSafeAreaInsets();
   const {route} = props;
   const {phoneNumber, type} = route.params || {};

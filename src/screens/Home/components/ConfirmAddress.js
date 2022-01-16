@@ -5,8 +5,11 @@ import Text from '../../../components/Text';
 import Button from '../../../components/Button';
 
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const ConfirmAddress = ({address, t, onBack, onConfirm, onChange}) => {
+const ConfirmAddress = ({address, onBack, onConfirm, onChange}) => {
+  const t = useTranslate();
+
   return (
     <View>
       <TouchableWithoutFeedback onPress={onBack}>
@@ -21,9 +24,10 @@ const ConfirmAddress = ({address, t, onBack, onConfirm, onChange}) => {
       {/* <TouchableWithoutFeedback onPress={onChange}> */}
       <View style={styles.addressContainer}>
         <Icon style={styles.pinIcon} fill={theme.color.primary} name="pin" />
-        <View style={{
-          flexShrink: 1,
-        }}>
+        <View
+          style={{
+            flexShrink: 1,
+          }}>
           <Text semiBold>{address.title}</Text>
           <View height={5} />
           <Text color={theme.color.secondary} size={12}>

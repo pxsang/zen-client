@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import {View, Image, TouchableWithoutFeedback, StyleSheet} from 'react-native';
-import {Drawer as UIDrawer, DrawerItem, IndexPath} from '@ui-kitten/components';
+import {View, TouchableWithoutFeedback, StyleSheet} from 'react-native';
+import {Drawer as UIDrawer, DrawerItem} from '@ui-kitten/components';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useSelector} from 'react-redux';
 import UserAvatar from './UserAvatar';

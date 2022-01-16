@@ -5,8 +5,11 @@ import Image from '../../../components/Image';
 import Button from '../../../components/Button';
 import PaymentSummary from '../../../components/PaymentSummary';
 import theme from '../../../constants/theme';
+import useTranslate from '../../../hooks/useTranslate';
 
-const WaitingForAccept = ({t, sessionDetail, onCancel}) => {
+const WaitingForAccept = ({sessionDetail, onCancel}) => {
+  const t = useTranslate();
+
   return (
     <View>
       <View style={styles.contentContainer}>

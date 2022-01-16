@@ -1,5 +1,11 @@
 import React, {useState, useEffect, useRef, useMemo, useCallback} from 'react';
-import {StyleSheet, View, TouchableWithoutFeedback, Image, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Image,
+  FlatList,
+} from 'react-native';
 import {Icon, Spinner, Divider, ListItem} from '@ui-kitten/components';
 import {Modalize} from 'react-native-modalize';
 import {Portal} from 'react-native-portalize';
@@ -9,6 +15,7 @@ import DebounceInput from '../../../components/DebounceInput';
 // import {autocomplete, details} from '../../../third-party/goong';
 import {autocomplete, details} from '../../../third-party/google-maps';
 import {distanceFormat} from '../../../helpers/display';
+import useTranslate from '../../../hooks/useTranslate';
 
 const PinIcon = props => <Icon {...props} name="pin" />;
 const ShakeIcon = props => <Icon {...props} name="shake" />;
@@ -24,7 +31,9 @@ const data = new Array(10).fill({
   longitude: 106.7133497,
 });
 
-const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
+const PickAddress = ({currentLocation, onSelectAddress, picking}) => {
+  const t = useTranslate();
+
   const myLocation = useMemo(() => {
     if (currentLocation) {
       return {
@@ -42,7 +51,9 @@ const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
   let [search, setSearch] = useState('');
   let [suggestions, setSuggestions] = useState([]);
   let [isSearching, setSearching] = useState(false);
-  let [locationList, setLocationList] = useState(myLocation ? [myLocation] : []);
+  let [locationList, setLocationList] = useState(
+    myLocation ? [myLocation] : [],
+  );
 
   useEffect(() => {
     if (suggestions && suggestions.length) {
@@ -83,7 +94,6 @@ const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
         try {
           setSearching(true);
           const result = await autocomplete(searchTerm, currentLocation);
-          console.log('result', result);
           if (result.status === 'OK') {
             const {predictions} = result;
 
@@ -137,7 +147,7 @@ const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
         <View style={[theme.block.rowCenter, theme.block.paddingVertical(20)]}>
           <Spinner />
         </View>
-      )
+      );
     }
 
     if (suggestions && suggestions.length) {
@@ -169,22 +179,39 @@ const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
         // />
         <View>
           {locationList?.map(location => (
-            <TouchableWithoutFeedback key={location.place_id} onPress={() => onSuggestionSelect(location)}>
-              <View style={[theme.block.rowMiddle, { paddingHorizontal: 15, paddingVertical: 15 }]}>
-                <View style={{
-                  flexBasis: 24,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <Icon name="pin" style={{ width: 24, height: 24 }} fill='#8F9BB3' />
+            <TouchableWithoutFeedback
+              key={location.place_id}
+              onPress={() => onSuggestionSelect(location)}>
+              <View
+                style={[
+                  theme.block.rowMiddle,
+                  {paddingHorizontal: 15, paddingVertical: 15},
+                ]}>
+                <View
+                  style={{
+                    flexBasis: 24,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                  <Icon
+                    name="pin"
+                    style={{width: 24, height: 24}}
+                    fill="#8F9BB3"
+                  />
                 </View>
-                <View style={{
-                  flexBasis: 'auto',
-                  flexShrink: 1,
-                  paddingLeft: 15,
-                }}>
+                <View
+                  style={{
+                    flexBasis: 'auto',
+                    flexShrink: 1,
+                    paddingLeft: 15,
+                  }}>
                   <Text semiBold>{location.short_address}</Text>
-                  <Text size={12} color={theme.color.secondary}>{location.distance_meters !== undefined ? `${distanceFormat(location.distance_meters)} - ` : ''}{location.address}</Text>
+                  <Text size={12} color={theme.color.secondary}>
+                    {location.distance_meters !== undefined
+                      ? `${distanceFormat(location.distance_meters)} - `
+                      : ''}
+                    {location.address}
+                  </Text>
                 </View>
               </View>
             </TouchableWithoutFeedback>
@@ -196,29 +223,41 @@ const PickAddress = ({currentLocation, onSelectAddress, t, picking}) => {
     if (currentLocation) {
       return (
         <TouchableWithoutFeedback onPress={onUseCurrentLocation}>
-          <View style={[theme.block.rowMiddle, { paddingHorizontal: 15, paddingVertical: 15 }]}>
-            <View style={{
-              flexBasis: 24,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <Icon name="shake" style={{ width: 24, height: 24 }} fill='#8F9BB3' />
+          <View
+            style={[
+              theme.block.rowMiddle,
+              {paddingHorizontal: 15, paddingVertical: 15},
+            ]}>
+            <View
+              style={{
+                flexBasis: 24,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Icon
+                name="shake"
+                style={{width: 24, height: 24}}
+                fill="#8F9BB3"
+              />
             </View>
-            <View style={{
-              flexBasis: 'auto',
-              flexShrink: 1,
-              paddingLeft: 15,
-            }}>
+            <View
+              style={{
+                flexBasis: 'auto',
+                flexShrink: 1,
+                paddingLeft: 15,
+              }}>
               <Text semiBold>{t('use_my_current_location')}</Text>
-              <Text size={12} color={theme.color.secondary}>{currentLocation.address}</Text>
+              <Text size={12} color={theme.color.secondary}>
+                {currentLocation.address}
+              </Text>
             </View>
           </View>
         </TouchableWithoutFeedback>
-      )
+      );
     }
 
     return null;
-  }
+  };
 
   return (
     <>

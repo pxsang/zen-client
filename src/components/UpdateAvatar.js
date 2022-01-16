@@ -1,35 +1,16 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import ReactNative, {
-  KeyboardAvoidingView,
-  Keyboard,
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  TouchableWithoutFeedback,
-  Platform,
-  Dimensions,
-} from 'react-native';
-import {
-  IndexPath,
-  Layout,
-  Select,
-  SelectItem,
-  Input,
-  Datepicker,
-  Icon,
-} from '@ui-kitten/components';
+import {StyleSheet, View, Image, TouchableWithoutFeedback} from 'react-native';
+import {Icon} from '@ui-kitten/components';
 import ImagePicker from 'react-native-image-crop-picker';
 
 import theme from '../constants/theme';
 
 import BottomActions from './BottomActions';
-import {AppContext} from '../providers/AppProvider';
+import useTranslate from '../hooks/useTranslate';
 
 export default function UpdateAvatar({size, data, onChange}) {
-  console.log('data', data);
-  const {t} = useContext(AppContext);
+  const t = useTranslate();
 
   let [isOpenBottomAction, setOpenBottomAction] = useState(false);
 
