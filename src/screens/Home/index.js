@@ -92,8 +92,6 @@ const Home = () => {
     dispatch(getServices());
   }, []);
 
-  console.log('sessionDetail', sessionDetail);
-
   const getCurrentProgress = useCallback(() => {
     if (!sessionDetail || sessionDetail.status !== SESSION_STATUS.STARTED) {
       return 0;
@@ -138,7 +136,7 @@ const Home = () => {
         .onSnapshot(snapshot => {
           if (snapshot) {
             const data = snapshot.data();
-            console.log('sessionsdata', data);
+            console.log('sessions data', data);
             setTherapistAddress({
               latitude: data?.therapist_lat,
               longitude: data?.therapist_long,
@@ -290,7 +288,6 @@ const Home = () => {
   useEffect(() => {
     const requestLocationPermission = async () => {
       const hasPermission = await hasLocationPermission();
-      console.log('hasPermission', hasPermission);
       if (hasPermission) {
         getOneTimeLocation();
         // subscribeLocationLocation();
@@ -556,7 +553,7 @@ const Home = () => {
                     strokeColor={theme.color.primary}
                     onReady={onReady}
                     optimizeWaypoints={true}
-                    apikey="AIzaSyB8NQbCQbLY7CSK9GBNyzzRPzbr_6s6xVg"
+                    apikey="AIzaSyDVXqh7SGFJs0nIejzcgLZ6tsEUwzNMY98"
                   />
                 </>
               )}

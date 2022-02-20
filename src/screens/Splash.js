@@ -1,5 +1,5 @@
-import React, {useRef, useContext} from 'react';
-import {View, Image, ScrollView, StyleSheet, Dimensions} from 'react-native';
+import React, {useRef} from 'react';
+import {View, Image, StyleSheet, Dimensions} from 'react-native';
 import {useValue, onScrollEvent} from 'react-native-redash/lib/module/v1';
 import Animated, {divide, multiply} from 'react-native-reanimated';
 import {useDispatch} from 'react-redux';
@@ -10,7 +10,6 @@ import Text from '../components/Text';
 import Dot from '../components/Dot';
 import Slide from '../components/Slide';
 import theme from '../constants/theme';
-import {AppContext} from '../providers/AppProvider';
 import {setFirstTime} from '../redux/actions/app';
 import useTranslate from '../hooks/useTranslate';
 
